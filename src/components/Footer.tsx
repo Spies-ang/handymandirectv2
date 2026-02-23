@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src={logoImg} alt="Handyman Direct" className="h-10 brightness-0 invert" />
+            <img src={logoImg} alt="Handyman Direct" className="h-10" />
           </div>
           <p className="text-sm opacity-70">Connecting South Africans with trusted, verified tradesmen since day one.</p>
           <p className="text-sm opacity-70 mt-2">Rietsanger Ave, Centurion, Gauteng</p>
