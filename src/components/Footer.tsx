@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logoImg from "@/assets/logo.png";
 
 const Footer = () => (
   <footer className="bg-foreground text-background">
@@ -6,10 +7,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-sm">HD</span>
-            </div>
-            <span className="font-display font-bold text-lg">Handyman Direct</span>
+            <img src={logoImg} alt="Handyman Direct" className="h-10 brightness-0 invert" />
           </div>
           <p className="text-sm opacity-70">Connecting South Africans with trusted, verified tradesmen since day one.</p>
           <p className="text-sm opacity-70 mt-2">Rietsanger Ave, Centurion, Gauteng</p>
