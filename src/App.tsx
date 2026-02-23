@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import BookingPage from "./pages/BookingPage";
 import ContractorsPage from "./pages/ContractorsPage";
 import FAQPage from "./pages/FAQPage";
+import TradePage from "./pages/TradePage";
+import AreaPage from "./pages/AreaPage";
+import TradeCityPage from "./pages/TradeCityPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,7 +25,9 @@ const App = () => (
           <Route path="/book" element={<BookingPage />} />
           <Route path="/contractors" element={<ContractorsPage />} />
           <Route path="/faq" element={<FAQPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/trade/:slug" element={<TradePage />} />
+          <Route path="/area/:citySlug" element={<AreaPage />} />
+          <Route path="/area/:citySlug/:tradeSlug" element={<TradeCityPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
