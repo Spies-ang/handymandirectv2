@@ -412,6 +412,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      engage_job: { Args: { p_job_id: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
