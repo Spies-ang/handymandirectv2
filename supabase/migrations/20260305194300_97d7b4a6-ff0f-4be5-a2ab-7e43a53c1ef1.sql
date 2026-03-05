@@ -1,0 +1,1 @@
+DROP POLICY "Contractors can insert engagements" ON public.engagements;
