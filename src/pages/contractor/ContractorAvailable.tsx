@@ -32,11 +32,12 @@ const ContractorAvailable = () => {
     const { error } = await supabase.rpc("engage_job", { p_job_id: engageJob.id });
 
     if (error) {
+      console.error("[Engage] RPC error:", error.message);
       const msg = error.message.includes("Insufficient credits")
         ? "You have no credits. Contact us to top up."
         : error.message.includes("Already engaged")
         ? "You have already engaged with this job."
-        : error.message;
+        : "Engagement failed. Please try again.";
       toast({ title: "Engagement failed", description: msg, variant: "destructive" });
     } else {
       setCredits((c) => c - 1);
