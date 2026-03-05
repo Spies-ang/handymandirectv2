@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, MapPin, CheckCircle } from "lucide-react";
+import { isValidSAPhone, isValidEmail, SA_PHONE_ERROR, EMAIL_ERROR } from "@/lib/validation";
 import logo from "@/assets/logo.png";
 
 const TRADES = [
@@ -30,6 +31,8 @@ const ContractorSignupPage = () => {
   const [companyAddress, setCompanyAddress] = useState("");
   const [coverageRadius, setCoverageRadius] = useState("25");
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -40,6 +43,27 @@ const ContractorSignupPage = () => {
     const updated = [...trades];
     updated[index] = value;
     setTrades(updated);
+  };
+
+  const validateStep1 = (): boolean => {
+    let valid = true;
+    if (!isValidSAPhone(mobile)) {
+      setPhoneError(SA_PHONE_ERROR);
+      valid = false;
+    } else {
+      setPhoneError("");
+    }
+    if (!isValidEmail(email)) {
+      setEmailError(EMAIL_ERROR);
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+    return valid && !!firstName && !!surname && !!password;
+  };
+
+  const handleNext = () => {
+    if (validateStep1()) setStep(2);
   };
 
   const handleSubmit = async () => {
@@ -103,11 +127,24 @@ const ContractorSignupPage = () => {
               </div>
               <div className="space-y-2">
                 <Label>Mobile Number</Label>
-                <Input value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder="081 234 5678" required />
+                <Input
+                  value={mobile}
+                  onChange={(e) => { setMobile(e.target.value); setPhoneError(""); }}
+                  placeholder="081 234 5678"
+                  required
+                />
+                {phoneError && <p className="text-xs text-destructive">{phoneError}</p>}
               </div>
               <div className="space-y-2">
                 <Label>Email</Label>
-                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                  placeholder="you@example.com"
+                  required
+                />
+                {emailError && <p className="text-xs text-destructive">{emailError}</p>}
               </div>
               <div className="space-y-2">
                 <Label>Password</Label>
@@ -117,7 +154,7 @@ const ContractorSignupPage = () => {
                 <Label>Company Name</Label>
                 <Input value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Your Company" required />
               </div>
-              <Button className="w-full" onClick={() => setStep(2)} disabled={!firstName || !surname || !email || !password}>
+              <Button className="w-full" onClick={handleNext}>
                 Next →
               </Button>
             </div>

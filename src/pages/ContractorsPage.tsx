@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { Briefcase, Users, Globe, Headphones, Star, TrendingUp, ArrowRight, CheckCircle2 } from "lucide-react";
+import { isValidSAPhone, isValidEmail, SA_PHONE_ERROR, EMAIL_ERROR } from "@/lib/validation";
 
 const benefits = [
   { icon: Briefcase, title: "Steady Job Leads", desc: "Receive a constant stream of real, verified job requests from customers ready to hire." },
@@ -34,11 +35,31 @@ const trades = [
 const ContractorsPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", trade: "", location: "", experience: "", mobile: "", email: "", about: "" });
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const update = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    let hasError = false;
+
+    if (!isValidSAPhone(form.mobile)) {
+      setPhoneError(SA_PHONE_ERROR);
+      hasError = true;
+    } else {
+      setPhoneError("");
+    }
+
+    if (form.email && !isValidEmail(form.email)) {
+      setEmailError(EMAIL_ERROR);
+      hasError = true;
+    } else {
+      setEmailError("");
+    }
+
+    if (hasError) return;
+
     const msg = `Contractor Application:%0A%0AName: ${form.name}%0ATrade: ${form.trade}%0ALocation: ${form.location}%0AExperience: ${form.experience} years%0AMobile: ${form.mobile}%0AEmail: ${form.email}%0AAbout: ${form.about}`;
     window.open(`https://wa.me/27817533284?text=${msg}`, "_blank");
     setSubmitted(true);
@@ -144,11 +165,26 @@ const ContractorsPage = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="cmobile">Mobile *</Label>
-                    <Input id="cmobile" type="tel" required value={form.mobile} onChange={(e) => update("mobile", e.target.value)} placeholder="081 234 5678" />
+                    <Input
+                      id="cmobile"
+                      type="tel"
+                      required
+                      value={form.mobile}
+                      onChange={(e) => { update("mobile", e.target.value); setPhoneError(""); }}
+                      placeholder="081 234 5678"
+                    />
+                    {phoneError && <p className="text-xs text-destructive">{phoneError}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="cemail">Email</Label>
-                    <Input id="cemail" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="you@example.com" />
+                    <Input
+                      id="cemail"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => { update("email", e.target.value); setEmailError(""); }}
+                      placeholder="you@example.com"
+                    />
+                    {emailError && <p className="text-xs text-destructive">{emailError}</p>}
                   </div>
                 </div>
                 <div className="space-y-2">

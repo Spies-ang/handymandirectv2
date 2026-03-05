@@ -10,7 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { X, Upload, CheckCircle, FileText, Clock, Users, Wrench, Search } from "lucide-react";
+import { X, Upload, FileText, Clock, Users, Wrench, Search } from "lucide-react";
+import GooglePlacesAutocomplete from "@/components/GooglePlacesAutocomplete";
 import logo from "@/assets/logo.png";
 
 const TRADES = [
@@ -25,6 +26,10 @@ const SERVICE_TYPES = [
   { value: "site_assessment", label: "Site Assessment", desc: "R550/hr site visit — Paid", icon: Search },
   { value: "inspection", label: "Home/Building Inspection", desc: "From R995 — Paid", icon: Wrench },
 ];
+
+const MAX_PHOTOS = 5;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 const PostJobPage = () => {
   const { user } = useAuth();
@@ -41,10 +46,6 @@ const PostJobPage = () => {
   const [loading, setLoading] = useState(false);
 
   const progress = (step / 4) * 100;
-
-  const MAX_PHOTOS = 5;
-  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
-  const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -76,7 +77,6 @@ const PostJobPage = () => {
 
     let photoUrls: string[] = [];
     for (const photo of photos) {
-      // Re-validate server-bound files
       if (!ALLOWED_TYPES.includes(photo.type) || photo.size > MAX_FILE_SIZE) continue;
 
       const safeName = photo.name.replace(/[^a-zA-Z0-9._-]/g, "_");
@@ -196,7 +196,11 @@ const PostJobPage = () => {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label>Job Address</Label>
-                <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Enter the job address" />
+                <GooglePlacesAutocomplete
+                  value={location}
+                  onPlaceSelect={setLocation}
+                  placeholder="Start typing an address..."
+                />
               </div>
               <div className="flex gap-3">
                 <Button variant="outline" className="flex-1" onClick={() => setStep(2)}>Back</Button>

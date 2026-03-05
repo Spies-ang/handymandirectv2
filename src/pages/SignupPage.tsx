@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { isValidSAPhone, isValidEmail, SA_PHONE_ERROR, EMAIL_ERROR } from "@/lib/validation";
 import logo from "@/assets/logo.png";
 
 const SignupPage = () => {
@@ -15,13 +16,32 @@ const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    let hasError = false;
 
+    if (!isValidSAPhone(mobile)) {
+      setPhoneError(SA_PHONE_ERROR);
+      hasError = true;
+    } else {
+      setPhoneError("");
+    }
+
+    if (!isValidEmail(email)) {
+      setEmailError(EMAIL_ERROR);
+      hasError = true;
+    } else {
+      setEmailError("");
+    }
+
+    if (hasError) return;
+
+    setLoading(true);
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -70,11 +90,26 @@ const SignupPage = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="mobile">Mobile Number</Label>
-              <Input id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder="081 234 5678" required />
+              <Input
+                id="mobile"
+                value={mobile}
+                onChange={(e) => { setMobile(e.target.value); setPhoneError(""); }}
+                placeholder="081 234 5678"
+                required
+              />
+              {phoneError && <p className="text-xs text-destructive">{phoneError}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                placeholder="you@example.com"
+                required
+              />
+              {emailError && <p className="text-xs text-destructive">{emailError}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
