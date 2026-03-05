@@ -1,11 +1,36 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, Phone, ChevronDown, User, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, role, profile, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handlePostJob = () => {
+    if (user && role === "customer") {
+      navigate("/dashboard/post-job");
+    } else {
+      navigate("/signup");
+    }
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
+
+  const dashboardPath = role === "contractor" ? "/contractor/dashboard" : role === "admin" ? "/admin" : "/dashboard";
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
@@ -16,7 +41,6 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-          <Link to="/book" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Post a Job</Link>
           <Link to="/contractors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">For Contractors</Link>
           <Link to="/faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
         </nav>
@@ -27,9 +51,50 @@ const Header = () => {
               <Phone className="w-4 h-4" /> Chat Now
             </Button>
           </a>
-          <Link to="/book">
-            <Button size="sm">Post a Job</Button>
-          </Link>
+
+          <Button size="sm" onClick={handlePostJob}>Post a Job</Button>
+
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <User className="w-4 h-4" />
+                  <span className="max-w-[120px] truncate">{profile?.full_name || "Account"}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => navigate(dashboardPath)}>
+                  My Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                  <LogOut className="w-4 h-4 mr-2" /> Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="ghost" size="sm">Login</Button>
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="sm" className="gap-1">
+                    Sign Up <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => navigate("/signup")}>
+                    I need a handyman
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/contractor/signup")}>
+                    I'm a contractor
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
+          )}
         </div>
 
         <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -40,16 +105,35 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden border-t bg-background p-4 space-y-3">
           <Link to="/" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/book" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Post a Job</Link>
           <Link to="/contractors" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>For Contractors</Link>
           <Link to="/faq" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
-          <div className="flex gap-2 pt-2">
-            <a href="https://wa.me/27817533284" target="_blank" rel="noopener noreferrer" className="flex-1">
+          <div className="flex flex-col gap-2 pt-2">
+            <a href="https://wa.me/27817533284" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="w-full gap-2"><Phone className="w-4 h-4" /> Chat</Button>
             </a>
-            <Link to="/book" className="flex-1" onClick={() => setMenuOpen(false)}>
-              <Button size="sm" className="w-full">Post a Job</Button>
-            </Link>
+            <Button size="sm" className="w-full" onClick={() => { handlePostJob(); setMenuOpen(false); }}>Post a Job</Button>
+            {user ? (
+              <>
+                <Button variant="outline" size="sm" className="w-full" onClick={() => { navigate(dashboardPath); setMenuOpen(false); }}>
+                  My Dashboard
+                </Button>
+                <Button variant="ghost" size="sm" className="w-full text-destructive" onClick={() => { handleSignOut(); setMenuOpen(false); }}>
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="w-full" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full">Login</Button>
+                </Link>
+                <Link to="/signup" className="w-full" onClick={() => setMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full">Sign Up (Customer)</Button>
+                </Link>
+                <Link to="/contractor/signup" className="w-full" onClick={() => setMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full">Sign Up (Contractor)</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

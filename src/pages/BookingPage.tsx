@@ -11,6 +11,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { ArrowLeft, ArrowRight, CheckCircle2, Upload } from "lucide-react";
+import { isValidSAPhone, isValidEmail, SA_PHONE_ERROR, EMAIL_ERROR } from "@/lib/validation";
 
 const trades = [
   "Builder", "Carpenter", "Electrician", "Handyman", "Painter",
@@ -36,6 +37,8 @@ const timingOptions = [
 const BookingPage = () => {
   const [searchParams] = useSearchParams();
   const [step, setStep] = useState(1);
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [form, setForm] = useState({
     trade: searchParams.get("trade") || "",
     firstName: "",
@@ -62,12 +65,36 @@ const BookingPage = () => {
 
   const update = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
 
+  const validateStep2 = (): boolean => {
+    let valid = true;
+    if (!isValidSAPhone(form.mobile)) {
+      setPhoneError(SA_PHONE_ERROR);
+      valid = false;
+    } else {
+      setPhoneError("");
+    }
+    if (!isValidEmail(form.email)) {
+      setEmailError(EMAIL_ERROR);
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+    return valid && !!form.firstName && !!form.surname;
+  };
+
   const canNext = () => {
     if (step === 1) return !!form.trade;
     if (step === 2) return form.firstName && form.surname && form.mobile && form.email;
     if (step === 3) return !!form.serviceType;
     if (step === 4) return form.description && form.location;
     return false;
+  };
+
+  const handleNext = () => {
+    if (step === 2) {
+      if (!validateStep2()) return;
+    }
+    setStep(step + 1);
   };
 
   const handleSubmit = () => {
@@ -90,7 +117,6 @@ const BookingPage = () => {
             Tell us what you need — it only takes a minute
           </p>
 
-          {/* Progress bar */}
           {step <= 4 && (
             <div className="flex items-center gap-1 mb-8">
               {stepLabels.map((label, i) => (
@@ -105,7 +131,6 @@ const BookingPage = () => {
           )}
 
           <div className="bg-card rounded-xl border p-6 md:p-8">
-            {/* Step 1: Trade */}
             {step === 1 && (
               <div className="space-y-4">
                 <h2 className="font-display font-bold text-xl text-foreground">Select your trade</h2>
@@ -127,7 +152,6 @@ const BookingPage = () => {
               </div>
             )}
 
-            {/* Step 2: Sign up */}
             {step === 2 && (
               <div className="space-y-4">
                 <h2 className="font-display font-bold text-xl text-foreground">Your details</h2>
@@ -143,16 +167,29 @@ const BookingPage = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="mobile">Mobile Number *</Label>
-                  <Input id="mobile" type="tel" value={form.mobile} onChange={(e) => update("mobile", e.target.value)} placeholder="081 234 5678" />
+                  <Input
+                    id="mobile"
+                    type="tel"
+                    value={form.mobile}
+                    onChange={(e) => { update("mobile", e.target.value); setPhoneError(""); }}
+                    placeholder="081 234 5678"
+                  />
+                  {phoneError && <p className="text-xs text-destructive">{phoneError}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input id="email" type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="john@example.com" />
+                  <Input
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => { update("email", e.target.value); setEmailError(""); }}
+                    placeholder="john@example.com"
+                  />
+                  {emailError && <p className="text-xs text-destructive">{emailError}</p>}
                 </div>
               </div>
             )}
 
-            {/* Step 3: Service type */}
             {step === 3 && (
               <div className="space-y-4">
                 <h2 className="font-display font-bold text-xl text-foreground">Choose service type</h2>
@@ -175,7 +212,6 @@ const BookingPage = () => {
               </div>
             )}
 
-            {/* Step 4: Job details */}
             {step === 4 && (
               <div className="space-y-4">
                 <h2 className="font-display font-bold text-xl text-foreground">Job details</h2>
@@ -218,7 +254,6 @@ const BookingPage = () => {
               </div>
             )}
 
-            {/* Step 5: Success */}
             {step === 5 && (
               <div className="text-center py-8">
                 <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
@@ -232,14 +267,13 @@ const BookingPage = () => {
               </div>
             )}
 
-            {/* Navigation */}
             {step <= 4 && (
               <div className="flex justify-between mt-8 pt-4 border-t">
                 <Button variant="ghost" disabled={step === 1} onClick={() => setStep(step - 1)} className="gap-2">
                   <ArrowLeft className="w-4 h-4" /> Back
                 </Button>
                 {step < 4 ? (
-                  <Button disabled={!canNext()} onClick={() => setStep(step + 1)} className="gap-2">
+                  <Button disabled={!canNext()} onClick={handleNext} className="gap-2">
                     Next <ArrowRight className="w-4 h-4" />
                   </Button>
                 ) : (
