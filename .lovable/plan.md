@@ -1,64 +1,124 @@
 
 
-# Handyman Direct — Website Rebuild Plan
+# Handyman Direct — Phase 2: Full Platform Build
 
-## Phase 1: Frontend & SEO Foundation (Current Build)
+## Prerequisites
 
-### 🏠 Homepage
-- **Hero section** with "Find Trusted Tradesmen Near You" headline, POST A JOB and CHAT NOW (WhatsApp) CTAs, and 4.9★ Google Reviews badge
-- **Trade selection** dropdown with all 12 trades (Builder, Carpenter, Electrician, etc.)
-- **How It Works** — 4-step visual flow (Select → Describe → Quotes → Hire)
-- **Premium Services** — cards for Instant Booking, Site Assessment, Inspection, Annual Maintenance Plan
-- **Pricing Transparency** — guideline pricing table (R99–R2000+) with disclaimer
-- **Trust Section** — verified contractors, privacy protection, secure data, reviews
-- **Testimonials** — 20 selected reviews with 4.9★ rating and "View All Reviews on Google" link
-- **Service Areas** — links to all city/suburb SEO pages
+**Supabase must be connected first.** No database connection exists yet. Before any implementation can begin, you need to enable Lovable Cloud (preferred) or connect an external Supabase project. This gives us authentication, database, storage, and edge functions.
 
-### 📋 Booking Flow (Multi-Step Form)
-- Step 1: Select trade
-- Step 2: Sign up (Name, Surname, Mobile, Email)
-- Step 3: Choose service type (Multiple Quotes, One Estimate, Instant Booking, Site Assessment, Inspection)
-- Step 4: Job details (Description, Budget, Location, Timing, Photo upload)
-- On submission: send details via WhatsApp message to the business numbers and confirmation to user's email
-
-### 👷 Contractor Recruitment Page
-- "Get More Jobs Without Doing the Marketing" headline
-- Benefits section (job leads, warm customers, no website needed, admin support, reputation building)
-- Contractor testimonials
-- "Apply to Join" CTA with application form (Name, Trade, Location, Experience, Contact)
-- Form submissions sent via WhatsApp/email
-
-### 🔍 SEO Pages
-- **Per-trade pages** (12 trades) — each with localized content, FAQs, and POST A JOB CTA
-- **Per-city pages** — Centurion, Pretoria, Johannesburg with suburb coverage
-- **Per-suburb pages** — key suburbs within each city
-- **Combined pages** (e.g., "Plumber Centurion", "Electrician Pretoria", "Builder Johannesburg")
-- Each page includes localized keywords, suburb mentions, and job posting CTA
-
-### ❓ FAQ Section
-- How does pricing work?
-- How do I know contractors are verified?
-- What if I'm not satisfied?
-- Is my data safe?
-
-### 🎨 Design & Brand
-- Clean white background with light green accent buttons
-- Bold, simple typography
-- Professional contractor imagery
-- Mobile-first responsive design
-- Friendly, trustworthy tone throughout
-
-### 🔗 Integrations
-- **WhatsApp floating chat button** linking to 081 753 3284 / 065 850 0989
-- **Google Reviews** badge showing 4.9★ rating with link to Google Business profile
-- All forms route to WhatsApp/email (no database yet)
+**Recommendation:** Use **Lovable Cloud** — it spins up Supabase automatically without needing an external account.
 
 ---
 
-## Phase 2: Backend & Dashboards (Future)
-- Supabase database for jobs, users, contractors
-- Contractor login dashboard (view leads, submit quotes, manage profile)
-- Admin panel (manage jobs, contractors, bookings)
-- Email/WhatsApp notifications from database triggers
-- User authentication for customers and contractors
+## Implementation Strategy
+
+This is a large build (~30+ new files, 12+ database tables, 3 dashboard layouts). It will be broken into sequential batches to stay within quality limits.
+
+### Batch 1: Database Schema + Auth
+- Enable Lovable Cloud / Supabase connection
+- Create all 12 tables with proper relationships, RLS policies, and enums
+- **Roles stored in separate `user_roles` table** (per security requirements) — NOT on the users/profiles table
+- Set up Supabase Auth with email/password signup
+- Create auth context, protected route wrapper, and role-based redirects
+- Build Login and Customer Signup pages
+- Build Contractor Signup wizard (3-step: Personal Details → Trade Selection → Coverage Area)
+
+### Batch 2: Customer Dashboard
+- Dashboard layout with authenticated nav bar (Overview, My Requests, Invoices, Profile, POST A JOB)
+- `/dashboard` — Welcome + recent jobs + reviews + profile overview
+- `/dashboard/requests` — Job list with status badges
+- `/dashboard/invoices` — Tabs (Invoices/Receipts) with date/reference filters
+- `/dashboard/profile` — Account settings with sub-panels (My Account, Sign-in & Security)
+
+### Batch 3: Job Posting Flow (Authenticated)
+- Full-screen modal wizard with green progress bar
+- 4 steps: Service Type → Job Details → Location → Confirmation
+- Saves to Supabase `jobs` table on submit
+- Photo upload to Supabase Storage
+
+### Batch 4: Contractor Dashboard
+- Contractor layout with nav (Overview, Available Jobs, Engagements, Requests, Archives, Invoices)
+- `/contractor/dashboard` — Welcome + donut chart stats + credits stats + reviews
+- `/contractor/available` — Invited / Available / Other jobs sections with Engage button
+- `/contractor/engagements` — Engaged jobs with revealed customer details
+- `/contractor/requests`, `/contractor/archives`, `/contractor/invoices`
+- `/contractor/profile` — Full account management with trade/coverage editors
+
+### Batch 5: Credits System + Cart
+- `/contractor/cart` — Buy credits page with dynamic pricing (R25/credit)
+- Placeholder payment button with friendly info banner
+- Credit deduction on engage (confirmation modal, balance check)
+- Bad lead flagging flow
+
+### Batch 6: Admin Panel
+- `/admin` — Role-gated admin area
+- Users, Jobs, Contractors, Credits, Invoices, Reviews management pages
+- Contractor verification approval/rejection
+- Manual credit issuance and bad lead refund handling
+
+### Batch 7: Notifications + Header Integration
+- `notifications` table reads with unread badge
+- Conditional header: public nav for guests, customer nav for customers, contractor nav for contractors
+- Email notification edge functions for key events (job posted, contractor engaged, account verified)
+
+---
+
+## Database Design
+
+```text
+┌──────────────┐     ┌───────────────────┐     ┌──────────────┐
+│  auth.users  │────→│   user_roles      │     │  profiles     │
+│  (Supabase)  │────→│  (admin/customer/ │     │  (shared)     │
+└──────────────┘     │   contractor)     │     └──────────────┘
+       │             └───────────────────┘            │
+       ├──→ customer_profiles                         │
+       ├──→ contractor_profiles                       │
+       │         │                                    │
+       │    ┌────┴─────┐                              │
+       │    │   jobs   │←─── quotes                   │
+       │    │          │←─── engagements               │
+       │    │          │←─── reviews                   │
+       │    └──────────┘                              │
+       │                                              │
+       ├──→ credits_transactions                      │
+       ├──→ invoices                                  │
+       ├──→ subscriptions                             │
+       └──→ notifications                             │
+```
+
+Key decisions:
+- `user_roles` table with `app_role` enum (`admin`, `customer`, `contractor`) — security-definer `has_role()` function for RLS
+- `profiles` table for shared fields (full_name, mobile, profile_picture_url) linked to `auth.users`
+- `customer_profiles` and `contractor_profiles` for role-specific data
+- All tables have RLS enabled with policies using `has_role()` function
+
+---
+
+## Design Consistency
+
+All new pages will use the existing design system:
+- White backgrounds, green primary buttons (`hsl(145 63% 42%)`)
+- `Plus Jakarta Sans` for headings, `DM Sans` for body
+- Card-based layouts with `border` and `shadow-sm`
+- Green underline accents on section headings
+- Status badges: green (completed), orange (engaged), blue (open), red (bad lead)
+- Green progress bars on all wizard flows
+- Existing Header/Footer unchanged on public pages; new authenticated headers for dashboards
+
+---
+
+## What Will NOT Change
+
+All existing public pages remain untouched:
+- Homepage (`/`)
+- Booking page (`/book`) — stays as WhatsApp-based for non-logged-in users
+- Contractor recruitment page (`/contractors`)
+- FAQ page (`/faq`)
+- All SEO trade/city/suburb pages
+
+---
+
+## First Action
+
+To proceed, **Lovable Cloud needs to be enabled**. Shall I enable it now so we can start building the database schema and authentication?
 
