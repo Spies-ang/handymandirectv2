@@ -42,8 +42,32 @@ const PostJobPage = () => {
 
   const progress = (step / 4) * 100;
 
+  const MAX_PHOTOS = 5;
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+  const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setPhotos(Array.from(e.target.files));
+    if (!e.target.files) return;
+    const files = Array.from(e.target.files);
+
+    if (files.length > MAX_PHOTOS) {
+      toast({ title: `Maximum ${MAX_PHOTOS} photos allowed`, variant: "destructive" });
+      return;
+    }
+
+    const valid: File[] = [];
+    for (const file of files) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        toast({ title: `"${file.name}" is not a supported image type`, variant: "destructive" });
+        continue;
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        toast({ title: `"${file.name}" exceeds 10 MB limit`, variant: "destructive" });
+        continue;
+      }
+      valid.push(file);
+    }
+    setPhotos(valid);
   };
 
   const handleSubmit = async () => {
@@ -52,8 +76,15 @@ const PostJobPage = () => {
 
     let photoUrls: string[] = [];
     for (const photo of photos) {
-      const path = `${user.id}/${Date.now()}-${photo.name}`;
-      const { error } = await supabase.storage.from("job-photos").upload(path, photo);
+      // Re-validate server-bound files
+      if (!ALLOWED_TYPES.includes(photo.type) || photo.size > MAX_FILE_SIZE) continue;
+
+      const safeName = photo.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${user.id}/${Date.now()}-${safeName}`;
+      const { error } = await supabase.storage.from("job-photos").upload(path, photo, {
+        contentType: photo.type,
+        upsert: false,
+      });
       if (!error) {
         const { data: urlData } = supabase.storage.from("job-photos").getPublicUrl(path);
         photoUrls.push(urlData.publicUrl);
