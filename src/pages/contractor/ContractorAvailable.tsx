@@ -27,19 +27,22 @@ const ContractorAvailable = () => {
 
   const handleEngage = async () => {
     if (!user || !engageJob) return;
-    if (credits < 1) {
-      toast({ title: "No credits", description: "Contact us to top up your credits.", variant: "destructive" });
-      setEngageJob(null);
-      return;
-    }
     setLoading(true);
 
-    await supabase.from("engagements").insert({ job_id: engageJob.id, contractor_id: user.id, credits_used: 1, status: "active" as any });
-    await supabase.from("contractor_profiles").update({ credits_balance: credits - 1 }).eq("user_id", user.id);
-    await supabase.from("credits_transactions").insert({ contractor_id: user.id, amount: -1, type: "spend" as any, reference: `Engaged job ${engageJob.id}` });
+    const { error } = await supabase.rpc("engage_job", { p_job_id: engageJob.id });
 
-    setCredits(credits - 1);
-    toast({ title: "Engaged!", description: "You can now view customer details." });
+    if (error) {
+      const msg = error.message.includes("Insufficient credits")
+        ? "You have no credits. Contact us to top up."
+        : error.message.includes("Already engaged")
+        ? "You have already engaged with this job."
+        : error.message;
+      toast({ title: "Engagement failed", description: msg, variant: "destructive" });
+    } else {
+      setCredits((c) => c - 1);
+      toast({ title: "Engaged!", description: "You can now view customer details." });
+    }
+
     setEngageJob(null);
     setLoading(false);
   };
