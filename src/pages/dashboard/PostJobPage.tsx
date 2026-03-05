@@ -108,7 +108,7 @@ const PostJobPage = () => {
     });
 
     if (error) {
-      console.error("[PostJob] insert error:", error.message);
+      if (import.meta.env.DEV) console.error("[PostJob] insert error:", error.message);
       toast({ title: "Error posting job", description: "Something went wrong. Please try again.", variant: "destructive" });
     } else {
       toast({ title: "Job posted successfully!" });
