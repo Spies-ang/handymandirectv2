@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setProfile({ ...profileRes.data, profile_picture_url: picUrl });
       }
     } catch (e) {
-      console.error("Error fetching user data:", e);
+      if (import.meta.env.DEV) console.error("Error fetching user data:", e);
     } finally {
       setLoading(false);
     }
