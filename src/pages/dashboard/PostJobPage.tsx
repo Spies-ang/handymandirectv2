@@ -86,8 +86,12 @@ const PostJobPage = () => {
         upsert: false,
       });
       if (!error) {
-        const { data: urlData } = supabase.storage.from("job-photos").getPublicUrl(path);
-        photoUrls.push(urlData.publicUrl);
+        const { data: signedData, error: signedError } = await supabase.storage
+          .from("job-photos")
+          .createSignedUrl(path, 60 * 60 * 24 * 365); // 1 year
+        if (signedData?.signedUrl) {
+          photoUrls.push(signedData.signedUrl);
+        }
       }
     }
 
@@ -104,7 +108,8 @@ const PostJobPage = () => {
     });
 
     if (error) {
-      toast({ title: "Error posting job", description: error.message, variant: "destructive" });
+      console.error("[PostJob] insert error:", error.message);
+      toast({ title: "Error posting job", description: "Something went wrong. Please try again.", variant: "destructive" });
     } else {
       toast({ title: "Job posted successfully!" });
       navigate("/dashboard/requests");
