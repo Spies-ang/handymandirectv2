@@ -38,7 +38,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         supabase.from("profiles").select("full_name, mobile, email, profile_picture_url").eq("user_id", userId).single(),
       ]);
       if (rolesRes.data) setRole(rolesRes.data.role as AppRole);
-      if (profileRes.data) setProfile(profileRes.data);
+      if (profileRes.data) {
+        let picUrl = profileRes.data.profile_picture_url || "";
+        // Convert storage path to signed URL for private bucket
+        if (picUrl && !picUrl.startsWith("http")) {
+          const { data: signedData } = await supabase.storage
+            .from("profile-pictures")
+            .createSignedUrl(picUrl, 60 * 60 * 24);
+          if (signedData?.signedUrl) picUrl = signedData.signedUrl;
+        }
+        setProfile({ ...profileRes.data, profile_picture_url: picUrl });
+      }
     } catch (e) {
       console.error("Error fetching user data:", e);
     } finally {
