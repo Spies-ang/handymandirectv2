@@ -34,17 +34,11 @@ const DashboardRequests = () => {
         </Link>
       </div>
 
-      <div className="bg-accent/50 border rounded-lg p-4 mb-6 flex items-center justify-between">
-        <p className="text-sm font-medium">Need some work done? Post a new job</p>
-        <Link to="/dashboard/post-job"><Button size="sm">Post a job</Button></Link>
-      </div>
-
       {jobs.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
             <Briefcase className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground mb-4">No requests found</p>
-            <Link to="/dashboard/post-job"><Button>Post a job →</Button></Link>
+            <p className="text-muted-foreground">No requests found</p>
           </CardContent>
         </Card>
       ) : (
