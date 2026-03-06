@@ -19,12 +19,12 @@ const ContractorEngagements = () => {
         if (!data) return;
         const enriched = await Promise.all(
           data.map(async (e) => {
-            const { data: profile } = await supabase
-              .from("profiles")
-              .select("full_name, mobile, email")
-              .eq("user_id", e.jobs?.customer_id)
-              .single();
-            return { ...e, customer: profile };
+            if (e.status === "active" && e.job_id) {
+              const { data: profiles } = await supabase
+                .rpc("get_customer_for_engagement", { p_job_id: e.job_id });
+              return { ...e, customer: profiles?.[0] ?? null };
+            }
+            return { ...e, customer: null };
           })
         );
         setEngagements(enriched);

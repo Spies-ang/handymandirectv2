@@ -413,6 +413,14 @@ export type Database = {
     }
     Functions: {
       engage_job: { Args: { p_job_id: string }; Returns: string }
+      get_customer_for_engagement: {
+        Args: { p_job_id: string }
+        Returns: {
+          email: string
+          full_name: string
+          mobile: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
