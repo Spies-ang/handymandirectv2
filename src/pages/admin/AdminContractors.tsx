@@ -18,9 +18,19 @@ const AdminContractors = () => {
 
   useEffect(() => { fetchContractors(); }, []);
 
-  const toggleVerify = async (cp: any) => {
-    await supabase.from("contractor_profiles").update({ is_verified: !cp.is_verified }).eq("id", cp.id);
-    toast({ title: cp.is_verified ? "Contractor unverified" : "Contractor verified!" });
+  const promoteAndVerify = async (cp: any) => {
+    const { error } = await supabase.rpc("promote_to_contractor", { p_user_id: cp.user_id });
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Contractor verified and promoted!" });
+    }
+    fetchContractors();
+  };
+
+  const unverify = async (cp: any) => {
+    await supabase.from("contractor_profiles").update({ is_verified: false }).eq("id", cp.id);
+    toast({ title: "Contractor unverified" });
     fetchContractors();
   };
 
@@ -37,7 +47,7 @@ const AdminContractors = () => {
             </div>
             <div className="flex items-center gap-2">
               <Badge className={c.is_verified ? "bg-green-100 text-green-800" : "bg-orange-100 text-orange-800"}>{c.is_verified ? "Verified" : "Pending"}</Badge>
-              <Button size="sm" variant="outline" onClick={() => toggleVerify(c)}>{c.is_verified ? "Unverify" : "Approve"}</Button>
+              <Button size="sm" variant="outline" onClick={() => c.is_verified ? unverify(c) : promoteAndVerify(c)}>{c.is_verified ? "Unverify" : "Approve"}</Button>
             </div>
           </CardContent></Card>
         ))}
