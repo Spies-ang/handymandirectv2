@@ -6,9 +6,22 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+const escapeHtml = (s: string): string =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Validate the caller is using the service role key
+  const authHeader = req.headers.get("Authorization");
+  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  if (!authHeader || !serviceRoleKey || authHeader !== `Bearer ${serviceRoleKey}`) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 
   const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
@@ -24,10 +37,10 @@ serve(async (req) => {
     const payload = await req.json();
     const record = payload.record;
 
-    const companyName = record.company_name || "Unknown";
-    const trades = (record.trade_categories || []).join(", ") || "Not specified";
+    const companyName = escapeHtml(record.company_name || "Unknown");
+    const trades = escapeHtml((record.trade_categories || []).join(", ") || "Not specified");
     const coverageArea = record.company_address
-      ? `${record.company_address} (${record.coverage_radius_km || 25}km radius)`
+      ? escapeHtml(`${record.company_address} (${record.coverage_radius_km || 25}km radius)`)
       : "Not specified";
 
     // 1. Email admin about new contractor application
@@ -65,7 +78,6 @@ serve(async (req) => {
 
     // 2. Get contractor's email from profiles table
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
     const profileRes = await fetch(
       `${supabaseUrl}/rest/v1/profiles?user_id=eq.${record.user_id}&select=email,full_name`,
@@ -78,7 +90,7 @@ serve(async (req) => {
     );
     const profiles = await profileRes.json();
     const contractorEmail = profiles?.[0]?.email;
-    const contractorName = profiles?.[0]?.full_name || "there";
+    const contractorName = escapeHtml(profiles?.[0]?.full_name || "there");
 
     if (contractorEmail) {
       const contractorEmailRes = await fetch("https://api.resend.com/emails", {
@@ -118,7 +130,7 @@ serve(async (req) => {
   } catch (error) {
     console.error("Error in notify-new-contractor:", error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      JSON.stringify({ error: "Internal server error" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
