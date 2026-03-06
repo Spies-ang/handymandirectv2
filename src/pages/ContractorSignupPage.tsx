@@ -218,11 +218,11 @@ const ContractorSignupPage = () => {
               <CheckCircle className="w-16 h-16 text-primary mx-auto" />
               <h2 className="font-display text-2xl font-bold">Thank you for signing up!</h2>
               <p className="text-muted-foreground">
-                We are currently reviewing your details/documents. We will notify you via email and SMS on the progress of your account verification.
+                Your account has been created. An admin will review and verify your contractor profile before you can access jobs. You will be notified via email once approved.
               </p>
               <div className="flex gap-3">
-                <Button className="flex-1" onClick={() => navigate("/contractor/dashboard")}>View my dashboard</Button>
-                <Button variant="outline" className="flex-1" onClick={() => navigate("/contractor/available")}>Available jobs</Button>
+                <Button className="flex-1" onClick={() => navigate("/")}>Back to Home</Button>
+                <Button variant="outline" className="flex-1" onClick={() => navigate("/login")}>Sign in</Button>
               </div>
             </div>
           )}
