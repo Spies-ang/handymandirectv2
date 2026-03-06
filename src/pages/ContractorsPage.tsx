@@ -160,7 +160,7 @@ const ContractorsPage = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="loc">Location / Area *</Label>
-                  <Input id="loc" required value={form.location} onChange={(e) => update("location", e.target.value)} <Input id="loc" required value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="e.g. Hatfield, Pretoria" /> />
+                  <Input id="loc" required value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="e.g. Hatfield, Pretoria" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">

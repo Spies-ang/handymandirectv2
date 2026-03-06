@@ -241,7 +241,7 @@ const BookingPage = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="location">Location / Suburb *</Label>
-                  <Input id="location" value={form.location} onChange={(e) => update("location", e.target.value)} <Input id="location" value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="e.g. Hatfield, Pretoria" /> />
+                  <Input id="location" value={form.location} onChange={(e) => update("location", e.target.value)} placeholder="e.g. Hatfield, Pretoria" />
                 </div>
                 <div className="space-y-2">
                   <Label>Photos (optional)</Label>
