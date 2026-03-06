@@ -8,8 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, MapPin, CheckCircle } from "lucide-react";
+import { Plus, CheckCircle } from "lucide-react";
 import { isValidSAPhone, isValidEmail, SA_PHONE_ERROR, EMAIL_ERROR } from "@/lib/validation";
+import GooglePlacesAutocomplete from "@/components/GooglePlacesAutocomplete";
 import logo from "@/assets/logo.png";
 
 const TRADES = [
@@ -188,10 +189,12 @@ const ContractorSignupPage = () => {
               <h3 className="font-display font-bold text-lg">Your Coverage Area</h3>
               <div className="space-y-2">
                 <Label>Company Address</Label>
-                <div className="relative">
-                  <Input value={companyAddress} onChange={(e) => setCompanyAddress(e.target.value)} placeholder="Type your company address" />
-                  <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                </div>
+                <GooglePlacesAutocomplete
+                  value={companyAddress}
+                  onPlaceSelect={(address) => setCompanyAddress(address)}
+                  placeholder="Start typing your address..."
+                />
+                <p className="text-xs text-muted-foreground">Select your address from the dropdown — only verified South African addresses are accepted.</p>
               </div>
               <div className="space-y-2">
                 <Label>Coverage Radius (km)</Label>
