@@ -58,6 +58,8 @@ const App = () => (
             <Route path="/area/:citySlug" element={<AreaPage />} />
             <Route path="/area/:citySlug/:tradeSlug" element={<TradeCityPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/contractor/signup" element={<ContractorSignupPage />} />
 
