@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 const areas = [
   {
-    city: "Centurion",
-    slug: "centurion",
-    suburbs: ["Eldoraigne", "Wierdapark", "Zwartkop", "Lyttelton", "Hennopspark", "Rooihuiskraal", "The Reeds", "Centurion Central"],
-  },
-  {
     city: "Pretoria",
     slug: "pretoria",
     suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana"],
   },
   {
-    city: "Johannesburg",
-    slug: "johannesburg",
-    suburbs: ["Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways", "Bryanston", "Bedfordview", "Edenvale"],
+    city: "Bloemfontein",
+    slug: "bloemfontein",
+    suburbs: ["Westdene", "Universitas", "Langenhoven Park", "Bayswater", "Willows", "Dan Pienaar", "Pellissier", "Fichardtpark"],
+  },
+  {
+    city: "Cape Town / Stellenbosch",
+    slug: "cape-town",
+    suburbs: ["Stellenbosch", "Somerset West", "Paarl", "Franschhoek", "Durbanville", "Bellville", "Brackenfell", "Kuils River"],
   },
 ];
 
@@ -23,7 +23,7 @@ const ServiceAreas = () => (
   <section className="container py-16">
     <div className="text-center mb-12">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Service Areas</h2>
-      <p className="text-muted-foreground text-lg">Trusted tradesmen across Gauteng and beyond</p>
+      <p className="text-muted-foreground text-lg">Trusted tradesmen across South Africa</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

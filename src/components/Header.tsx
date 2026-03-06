@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, ChevronDown, User, LogOut } from "lucide-react";
+import { Menu, X, ChevronDown, User, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import {
@@ -17,13 +17,7 @@ const Header = () => {
   const { user, role, profile, signOut } = useAuth();
   const navigate = useNavigate();
 
-  const handlePostJob = () => {
-    if (user && role === "customer") {
-      navigate("/dashboard/post-job");
-    } else {
-      navigate("/signup");
-    }
-  };
+  const postJobPath = user && role === "customer" ? "/dashboard/post-job" : "/signup";
 
   const handleSignOut = async () => {
     await signOut();
@@ -36,24 +30,17 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Handyman Direct" className="h-10" />
+          <img src={logo} alt="Handyman Direct" className="h-12" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+          <Link to={postJobPath} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Post a Job</Link>
           <Link to="/contractors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">For Contractors</Link>
           <Link to="/faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://wa.me/27817533284" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="sm" className="gap-2">
-              <Phone className="w-4 h-4" /> Chat Now
-            </Button>
-          </a>
-
-          <Button size="sm" onClick={handlePostJob}>Post a Job</Button>
-
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -105,13 +92,10 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden border-t bg-background p-4 space-y-3">
           <Link to="/" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to={postJobPath} className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Post a Job</Link>
           <Link to="/contractors" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>For Contractors</Link>
           <Link to="/faq" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <div className="flex flex-col gap-2 pt-2">
-            <a href="https://wa.me/27817533284" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="sm" className="w-full gap-2"><Phone className="w-4 h-4" /> Chat</Button>
-            </a>
-            <Button size="sm" className="w-full" onClick={() => { handlePostJob(); setMenuOpen(false); }}>Post a Job</Button>
             {user ? (
               <>
                 <Button variant="outline" size="sm" className="w-full" onClick={() => { navigate(dashboardPath); setMenuOpen(false); }}>

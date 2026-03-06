@@ -10,7 +10,7 @@ const Footer = () => (
             <img src={logoImg} alt="Handyman Direct" className="h-10" />
           </div>
           <p className="text-sm opacity-70">Connecting South Africans with trusted, verified tradesmen since day one.</p>
-          <p className="text-sm opacity-70 mt-2">Rietsanger Ave, Centurion, Gauteng</p>
+          <p className="text-sm opacity-70 mt-2">South Africa</p>
         </div>
 
         <div>
@@ -27,9 +27,9 @@ const Footer = () => (
         <div>
           <h4 className="font-display font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Areas</h4>
           <ul className="space-y-2 text-sm opacity-70">
-            <li><Link to="/area/centurion" className="hover:opacity-100 transition-opacity">Centurion</Link></li>
             <li><Link to="/area/pretoria" className="hover:opacity-100 transition-opacity">Pretoria</Link></li>
-            <li><Link to="/area/johannesburg" className="hover:opacity-100 transition-opacity">Johannesburg</Link></li>
+            <li><Link to="/area/bloemfontein" className="hover:opacity-100 transition-opacity">Bloemfontein</Link></li>
+            <li><Link to="/area/cape-town" className="hover:opacity-100 transition-opacity">Cape Town / Stellenbosch</Link></li>
           </ul>
         </div>
 
