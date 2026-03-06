@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { X, Upload, FileText, Clock, Users, Wrench, Search } from "lucide-react";
+import { X, Upload, FileText, Clock, Users, Wrench, Search, AlertTriangle, Info } from "lucide-react";
 import GooglePlacesAutocomplete from "@/components/GooglePlacesAutocomplete";
 import logo from "@/assets/logo.png";
 
@@ -31,11 +31,33 @@ const MAX_PHOTOS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
+const TRADE_DISCLAIMERS: Record<string, string> = {
+  Electrician: "Electrical work in South Africa requires a Certificate of Compliance (COC). Only a registered electrician can legally issue a COC. Your contractor will advise on this during the quote.",
+  Plumber: "Certain plumbing work requires municipal approval and inspection. Your contractor will advise on any permits required.",
+  Builder: "Structural alterations may require approved building plans from your local municipality. Work without approved plans may be illegal and could affect your home insurance.",
+  Renovator: "Structural alterations may require approved building plans from your local municipality. Work without approved plans may be illegal and could affect your home insurance.",
+  Roofer: "Roof work on sectional title or body corporate properties requires written trustee approval. Please confirm this before proceeding.",
+};
+
+const OWNERSHIP_OPTIONS = ["Owner", "Tenant", "Body Corporate / Strata", "Other"];
+const PERMISSION_OPTIONS = ["Yes, I have written permission", "No, not yet", "I need to get it"];
+const BUDGET_OPTIONS = ["Under R500", "R500–R2,000", "R2,000–R5,000", "R5,000–R20,000", "R20,000+"];
+const READINESS_OPTIONS = ["Yes, ready within 14 days", "Just exploring options"];
+
 const PostJobPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [step, setStep] = useState(1);
+
+  // Step 0 state
+  const [ownership, setOwnership] = useState("");
+  const [landlordPermission, setLandlordPermission] = useState("");
+  const [budgetRange, setBudgetRange] = useState("");
+  const [readiness, setReadiness] = useState("");
+  const [step0Phase, setStep0Phase] = useState<"a" | "b">("a");
+
+  // Main flow state
+  const [step, setStep] = useState(0);
   const [serviceType, setServiceType] = useState("");
   const [tradeCategory, setTradeCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -45,17 +67,29 @@ const PostJobPage = () => {
   const [photos, setPhotos] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const progress = (step / 4) * 100;
+  const totalSteps = 5;
+  const progress = (step / (totalSteps - 1)) * 100;
+
+  const needsPermissionWarning = ownership === "Tenant" && (landlordPermission === "No, not yet" || landlordPermission === "I need to get it");
+  const isExploring = readiness === "Just exploring options";
+
+  const canProceedStep0A = () => {
+    if (!ownership) return false;
+    if (ownership === "Tenant" && !landlordPermission) return false;
+    return true;
+  };
+
+  const canProceedStep0B = () => {
+    return !!budgetRange && !!readiness;
+  };
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const files = Array.from(e.target.files);
-
     if (files.length > MAX_PHOTOS) {
       toast({ title: `Maximum ${MAX_PHOTOS} photos allowed`, variant: "destructive" });
       return;
     }
-
     const valid: File[] = [];
     for (const file of files) {
       if (!ALLOWED_TYPES.includes(file.type)) {
@@ -78,7 +112,6 @@ const PostJobPage = () => {
     let photoUrls: string[] = [];
     for (const photo of photos) {
       if (!ALLOWED_TYPES.includes(photo.type) || photo.size > MAX_FILE_SIZE) continue;
-
       const safeName = photo.name.replace(/[^a-zA-Z0-9._-]/g, "_");
       const path = `${user.id}/${Date.now()}-${safeName}`;
       const { error } = await supabase.storage.from("job-photos").upload(path, photo, {
@@ -86,9 +119,9 @@ const PostJobPage = () => {
         upsert: false,
       });
       if (!error) {
-        const { data: signedData, error: signedError } = await supabase.storage
+        const { data: signedData } = await supabase.storage
           .from("job-photos")
-          .createSignedUrl(path, 60 * 60 * 24 * 365); // 1 year
+          .createSignedUrl(path, 60 * 60 * 24 * 365);
         if (signedData?.signedUrl) {
           photoUrls.push(signedData.signedUrl);
         }
@@ -117,6 +150,8 @@ const PostJobPage = () => {
     setLoading(false);
   };
 
+  const stepLabel = step === 0 ? `Before You Post — ${step0Phase === "a" ? "A" : "B"}` : `Step ${step} of 4`;
+
   return (
     <div className="fixed inset-0 z-50 bg-background overflow-auto">
       <div className="container max-w-2xl py-8">
@@ -126,10 +161,130 @@ const PostJobPage = () => {
         </div>
 
         <div className="mb-6">
-          <p className="text-sm text-muted-foreground mb-2">Step {step} of 4</p>
+          <p className="text-sm text-muted-foreground mb-2">{stepLabel}</p>
           <Progress value={progress} className="h-2" />
         </div>
 
+        {/* Step 0A — Property Ownership */}
+        {step === 0 && step0Phase === "a" && (
+          <Card>
+            <CardHeader><CardTitle className="font-display">Before You Post</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Are you the property owner or a tenant?</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  {OWNERSHIP_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => { setOwnership(opt); if (opt !== "Tenant") setLandlordPermission(""); }}
+                      className={`text-left p-3 rounded-lg border-2 transition-colors text-sm font-medium ${
+                        ownership === opt ? "border-primary bg-accent" : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {ownership === "Tenant" && (
+                <div className="space-y-2">
+                  <Label>Do you have written permission from your landlord for this work?</Label>
+                  <div className="space-y-2">
+                    {PERMISSION_OPTIONS.map((opt) => (
+                      <button
+                        key={opt}
+                        onClick={() => setLandlordPermission(opt)}
+                        className={`w-full text-left p-3 rounded-lg border-2 transition-colors text-sm ${
+                          landlordPermission === opt ? "border-primary bg-accent" : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {needsPermissionWarning && (
+                <div className="flex gap-3 p-4 rounded-lg bg-orange-50 border border-orange-200 text-orange-800 dark:bg-orange-950/30 dark:border-orange-800 dark:text-orange-200">
+                  <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
+                  <p className="text-sm">
+                    Most contractors cannot proceed without written landlord approval for electrical, plumbing, gas or structural work. Please obtain written permission before posting this job to avoid a wasted callout. You can still continue, but your job will be flagged as <strong>Pending Approval</strong>.
+                  </p>
+                </div>
+              )}
+
+              <Button
+                className="w-full"
+                onClick={() => setStep0Phase("b")}
+                disabled={!canProceedStep0A()}
+              >
+                Next →
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Step 0B — Budget and Readiness */}
+        {step === 0 && step0Phase === "b" && (
+          <Card>
+            <CardHeader><CardTitle className="font-display">Before You Post</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>What is your approximate budget for this job?</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  {BUDGET_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => setBudgetRange(opt)}
+                      className={`text-left p-3 rounded-lg border-2 transition-colors text-sm font-medium ${
+                        budgetRange === opt ? "border-primary bg-accent" : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Are you ready to proceed if you receive a suitable quote?</Label>
+                <div className="space-y-2">
+                  {READINESS_OPTIONS.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => setReadiness(opt)}
+                      className={`w-full text-left p-3 rounded-lg border-2 transition-colors text-sm ${
+                        readiness === opt ? "border-primary bg-accent" : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {isExploring && (
+                <div className="flex gap-3 p-4 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 dark:bg-blue-950/30 dark:border-blue-800 dark:text-blue-200">
+                  <Info className="w-5 h-5 shrink-0 mt-0.5" />
+                  <p className="text-sm">
+                    No problem — you can still post your job. Contractors may prioritise customers who are ready to proceed. Your job will be marked as <strong>Exploratory</strong>.
+                  </p>
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <Button variant="outline" className="flex-1" onClick={() => setStep0Phase("a")}>Back</Button>
+                <Button className="flex-1" onClick={() => setStep(1)} disabled={!canProceedStep0B()}>
+                  Next →
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Step 1 — Service Type */}
         {step === 1 && (
           <Card>
             <CardHeader><CardTitle className="font-display">Choose Service Type</CardTitle></CardHeader>
@@ -149,10 +304,12 @@ const PostJobPage = () => {
                   </div>
                 </button>
               ))}
+              <Button variant="outline" className="w-full" onClick={() => { setStep(0); setStep0Phase("b"); }}>Back</Button>
             </CardContent>
           </Card>
         )}
 
+        {/* Step 2 — Job Details */}
         {step === 2 && (
           <Card>
             <CardHeader><CardTitle className="font-display">Job Details</CardTitle></CardHeader>
@@ -163,6 +320,12 @@ const PostJobPage = () => {
                   <SelectTrigger><SelectValue placeholder="Select a trade" /></SelectTrigger>
                   <SelectContent>{TRADES.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
                 </Select>
+                {tradeCategory && TRADE_DISCLAIMERS[tradeCategory] && (
+                  <div className="flex gap-3 p-3 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 dark:bg-yellow-950/30 dark:border-yellow-800 dark:text-yellow-200">
+                    <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <p className="text-xs">{TRADE_DISCLAIMERS[tradeCategory]}</p>
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <Label>Job Description</Label>
@@ -195,6 +358,7 @@ const PostJobPage = () => {
           </Card>
         )}
 
+        {/* Step 3 — Location */}
         {step === 3 && (
           <Card>
             <CardHeader><CardTitle className="font-display">Location</CardTitle></CardHeader>
@@ -215,11 +379,16 @@ const PostJobPage = () => {
           </Card>
         )}
 
+        {/* Step 4 — Review & Confirm */}
         {step === 4 && (
           <Card>
             <CardHeader><CardTitle className="font-display">Review & Confirm</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3 text-sm">
+                <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Property</span><span className="font-medium">{ownership}</span></div>
+                {needsPermissionWarning && <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Landlord Permission</span><span className="font-medium text-orange-600">{landlordPermission}</span></div>}
+                <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Budget Range</span><span className="font-medium">{budgetRange}</span></div>
+                <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Readiness</span><span className="font-medium">{readiness}</span></div>
                 <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Service Type</span><span className="font-medium">{SERVICE_TYPES.find(s => s.value === serviceType)?.label}</span></div>
                 <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Trade</span><span className="font-medium">{tradeCategory}</span></div>
                 <div className="flex justify-between py-2 border-b"><span className="text-muted-foreground">Budget</span><span className="font-medium">R{budget || "—"}</span></div>

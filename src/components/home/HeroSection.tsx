@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Star, ArrowRight, MessageCircle } from "lucide-react";
+import { Star, ArrowRight, HardHat } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -41,11 +41,9 @@ const HeroSection = () => {
             <Button size="lg" className="gap-2 text-base px-8 w-full sm:w-auto" onClick={handlePostJob}>
               Post a Job <ArrowRight className="w-4 h-4" />
             </Button>
-            <a href="https://wa.me/27817533284?text=Hi%2C%20I%20need%20help%20finding%20a%20tradesman" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="gap-2 text-base px-8 w-full sm:w-auto border-[hsl(var(--whatsapp))] text-[hsl(var(--whatsapp))] hover:bg-[hsl(var(--whatsapp))]/10">
-                <MessageCircle className="w-4 h-4" /> Chat Now
-              </Button>
-            </a>
+            <Button size="lg" variant="outline" className="gap-2 text-base px-8 w-full sm:w-auto" onClick={() => navigate("/contractor/signup")}>
+              <HardHat className="w-4 h-4" /> Join as a Contractor
+            </Button>
           </div>
 
           <p className="mt-6 text-sm text-muted-foreground">

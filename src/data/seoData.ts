@@ -176,21 +176,21 @@ export interface CityData {
 
 export const cities: CityData[] = [
   {
-    name: "Centurion",
-    slug: "centurion",
-    description: "Find trusted tradesmen in Centurion and surrounding suburbs. Handyman Direct connects you with verified contractors for any home improvement or repair project.",
-    suburbs: ["Eldoraigne", "Wierdapark", "Zwartkop", "Lyttelton", "Hennopspark", "Rooihuiskraal", "The Reeds", "Centurion Central", "Irene", "Pierre van Ryneveld", "Clubview", "Wierda Park"],
-  },
-  {
     name: "Pretoria",
     slug: "pretoria",
     description: "Find trusted tradesmen in Pretoria and surrounding suburbs. From Hatfield to Waterkloof, Handyman Direct has verified contractors ready to help.",
     suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana", "Faerie Glen", "Lynnwood", "Moot", "Sunnyside"],
   },
   {
-    name: "Johannesburg",
-    slug: "johannesburg",
-    description: "Find trusted tradesmen in Johannesburg and surrounding suburbs. From Sandton to Roodepoort, get quotes from verified contractors.",
-    suburbs: ["Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways", "Bryanston", "Bedfordview", "Edenvale", "Northcliff", "Melville", "Parkhurst", "Greenside"],
+    name: "Bloemfontein",
+    slug: "bloemfontein",
+    description: "Find trusted tradesmen in Bloemfontein and surrounding suburbs. Handyman Direct connects you with verified contractors for any home improvement or repair project.",
+    suburbs: ["Westdene", "Universitas", "Langenhoven Park", "Bayswater", "Willows", "Dan Pienaar", "Pellissier", "Fichardtpark", "Brandwag", "Hospitaalpark", "Noordhoek", "Heuwelsig"],
+  },
+  {
+    name: "Cape Town / Stellenbosch",
+    slug: "cape-town",
+    description: "Find trusted tradesmen in Cape Town, Stellenbosch and the Winelands area. Get quotes from verified contractors for any project.",
+    suburbs: ["Stellenbosch", "Somerset West", "Paarl", "Franschhoek", "Durbanville", "Bellville", "Brackenfell", "Kuils River", "Strand", "Gordon's Bay", "Helderberg", "Kraaifontein"],
   },
 ];
