@@ -14,6 +14,8 @@ import AreaPage from "./pages/AreaPage";
 import TradeCityPage from "./pages/TradeCityPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SignupPage from "./pages/SignupPage";
 import ContractorSignupPage from "./pages/ContractorSignupPage";
 import DashboardOverview from "./pages/dashboard/DashboardOverview";
@@ -56,6 +58,8 @@ const App = () => (
             <Route path="/area/:citySlug" element={<AreaPage />} />
             <Route path="/area/:citySlug/:tradeSlug" element={<TradeCityPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/contractor/signup" element={<ContractorSignupPage />} />
 
