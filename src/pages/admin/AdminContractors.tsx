@@ -47,7 +47,7 @@ const AdminContractors = () => {
             </div>
             <div className="flex items-center gap-2">
               <Badge className={c.is_verified ? "bg-green-100 text-green-800" : "bg-orange-100 text-orange-800"}>{c.is_verified ? "Verified" : "Pending"}</Badge>
-              <Button size="sm" variant="outline" onClick={() => toggleVerify(c)}>{c.is_verified ? "Unverify" : "Approve"}</Button>
+              <Button size="sm" variant="outline" onClick={() => c.is_verified ? unverify(c) : promoteAndVerify(c)}>{c.is_verified ? "Unverify" : "Approve"}</Button>
             </div>
           </CardContent></Card>
         ))}
