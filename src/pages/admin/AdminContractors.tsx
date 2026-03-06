@@ -18,9 +18,19 @@ const AdminContractors = () => {
 
   useEffect(() => { fetchContractors(); }, []);
 
-  const toggleVerify = async (cp: any) => {
-    await supabase.from("contractor_profiles").update({ is_verified: !cp.is_verified }).eq("id", cp.id);
-    toast({ title: cp.is_verified ? "Contractor unverified" : "Contractor verified!" });
+  const promoteAndVerify = async (cp: any) => {
+    const { error } = await supabase.rpc("promote_to_contractor", { p_user_id: cp.user_id });
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Contractor verified and promoted!" });
+    }
+    fetchContractors();
+  };
+
+  const unverify = async (cp: any) => {
+    await supabase.from("contractor_profiles").update({ is_verified: false }).eq("id", cp.id);
+    toast({ title: "Contractor unverified" });
     fetchContractors();
   };
 
