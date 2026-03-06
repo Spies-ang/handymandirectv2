@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
-      <div className="container flex items-center justify-between h-16">
+      <div className="container flex items-center justify-between h-16 relative">
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Handyman Direct" className="h-12" />
         </Link>
