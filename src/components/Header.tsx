@@ -33,7 +33,7 @@ const Header = () => {
           <img src={logo} alt="Handyman Direct" className="h-12" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
           <Link to={postJobPath} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Post a Job</Link>
           <Link to="/contractors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">For Contractors</Link>
