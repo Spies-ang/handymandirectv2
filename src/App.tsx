@@ -14,6 +14,8 @@ import AreaPage from "./pages/AreaPage";
 import TradeCityPage from "./pages/TradeCityPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import SignupPage from "./pages/SignupPage";
 import ContractorSignupPage from "./pages/ContractorSignupPage";
 import DashboardOverview from "./pages/dashboard/DashboardOverview";
