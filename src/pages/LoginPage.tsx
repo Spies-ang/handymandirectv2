@@ -28,16 +28,18 @@ const LoginPage = () => {
     }
 
     if (data.user) {
-      const { data: roleData } = await supabase
+      const { data: roleData, error: roleError } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", data.user.id)
-        .single();
+        .maybeSingle();
+
+      if (roleError) console.error("Role fetch error:", roleError.message);
 
       const role = roleData?.role;
       if (role === "contractor") navigate("/contractor/dashboard");
       else if (role === "admin") navigate("/admin");
-      else navigate("/dashboard");
+      else navigate("/dashboard"); // fallback for customer or unknown role
     }
 
     setLoading(false);
