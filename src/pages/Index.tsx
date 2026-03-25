@@ -17,9 +17,9 @@ const Index = () => {
       <main className="flex-1">
         <HeroSection />
         <TradeSelector />
-        <HowItWorks />
+        <div className="hidden md:block"><HowItWorks /></div>
         <PremiumServices />
-        <TrustSection />
+        <div className="hidden md:block"><TrustSection /></div>
         <TestimonialsSection />
         <ServiceAreas />
         <FAQSection />
