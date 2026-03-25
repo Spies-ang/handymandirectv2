@@ -5,7 +5,6 @@ import HeroSection from "@/components/home/HeroSection";
 import TradeSelector from "@/components/home/TradeSelector";
 import HowItWorks from "@/components/home/HowItWorks";
 import PremiumServices from "@/components/home/PremiumServices";
-import PricingSection from "@/components/home/PricingSection";
 import TrustSection from "@/components/home/TrustSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ServiceAreas from "@/components/home/ServiceAreas";
@@ -20,7 +19,6 @@ const Index = () => {
         <TradeSelector />
         <HowItWorks />
         <PremiumServices />
-        <PricingSection />
         <TrustSection />
         <TestimonialsSection />
         <ServiceAreas />
