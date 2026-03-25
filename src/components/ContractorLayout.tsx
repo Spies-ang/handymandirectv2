@@ -30,7 +30,7 @@ const ContractorLayout = ({ children }: { children: ReactNode }) => {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
         <div className="container flex items-center justify-between h-16">
-          <Link to="/contractor/dashboard" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img src={logo} alt="Handyman Direct" className="h-10" />
           </Link>
 
