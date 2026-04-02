@@ -4,16 +4,28 @@ import { Link } from "react-router-dom";
 
 const services = [
   {
-    icon: Zap,
-    title: "Instant Booking",
-    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
-    cta: "Book Now",
+    icon: Users,
+    title: "Multiple Contractor Quotes",
+    desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
+    cta: "Get Quotes",
+  },
+  {
+    icon: Calculator,
+    title: "Guesstimate Quotation",
+    desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
+    cta: "Get Estimate",
   },
   {
     icon: ClipboardCheck,
     title: "Site Assessment",
     desc: "Professional on-site evaluation with a detailed scope and quote.",
     cta: "Request Assessment",
+  },
+  {
+    icon: Zap,
+    title: "Instant Booking",
+    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
+    cta: "Book Now",
   },
   {
     icon: ShieldCheck,
@@ -26,18 +38,6 @@ const services = [
     title: "Annual Maintenance",
     desc: "Year-round home maintenance plan covering all trades.",
     cta: "Learn More",
-  },
-  {
-    icon: Users,
-    title: "Multiple Contractor Quotes",
-    desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
-    cta: "Get Quotes",
-  },
-  {
-    icon: Calculator,
-    title: "Guesstimate Quotation",
-    desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
-    cta: "Get Estimate",
   },
 ];
 
