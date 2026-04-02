@@ -38,6 +38,18 @@ import AdminContractors from "./pages/admin/AdminContractors";
 import AdminCredits from "./pages/admin/AdminCredits";
 import AdminInvoices from "./pages/admin/AdminInvoices";
 import AdminReviews from "./pages/admin/AdminReviews";
+import BuilderPage from "./pages/trades/BuilderPage";
+import CarpenterPage from "./pages/trades/CarpenterPage";
+import ElectricianPage from "./pages/trades/ElectricianPage";
+import HandymanPage from "./pages/trades/HandymanPage";
+import PainterPage from "./pages/trades/PainterPage";
+import PaverPage from "./pages/trades/PaverPage";
+import PlastererPage from "./pages/trades/PlastererPage";
+import PlumberPage from "./pages/trades/PlumberPage";
+import RenovatorPage from "./pages/trades/RenovatorPage";
+import RooferPage from "./pages/trades/RooferPage";
+import TilerPage from "./pages/trades/TilerPage";
+import WelderPage from "./pages/trades/WelderPage";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +67,18 @@ const App = () => (
             <Route path="/contractors" element={<ContractorsPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/trade/:slug" element={<TradePage />} />
+            <Route path="/trades/builder" element={<BuilderPage />} />
+            <Route path="/trades/carpenter" element={<CarpenterPage />} />
+            <Route path="/trades/electrician" element={<ElectricianPage />} />
+            <Route path="/trades/handyman" element={<HandymanPage />} />
+            <Route path="/trades/painter" element={<PainterPage />} />
+            <Route path="/trades/paver" element={<PaverPage />} />
+            <Route path="/trades/plasterer" element={<PlastererPage />} />
+            <Route path="/trades/plumber" element={<PlumberPage />} />
+            <Route path="/trades/renovator" element={<RenovatorPage />} />
+            <Route path="/trades/roofer" element={<RooferPage />} />
+            <Route path="/trades/tiler" element={<TilerPage />} />
+            <Route path="/trades/welder" element={<WelderPage />} />
             <Route path="/area/:citySlug" element={<AreaPage />} />
             <Route path="/area/:citySlug/:tradeSlug" element={<TradeCityPage />} />
             <Route path="/login" element={<LoginPage />} />
