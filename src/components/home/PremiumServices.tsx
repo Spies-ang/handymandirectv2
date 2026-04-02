@@ -2,57 +2,103 @@ import { Zap, ClipboardCheck, ShieldCheck, CalendarClock, Users, Calculator } fr
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const services = [
+type Tier = "beginner" | "intermediate" | "master";
+
+const tierConfig: Record<Tier, { color: string; label: string }> = {
+  beginner:     { color: "#27AE60", label: "Beginner" },
+  intermediate: { color: "#F39C12", label: "Intermediate" },
+  master:       { color: "#2B7BCC", label: "Master" },
+};
+
+const services: { icon: React.ElementType; title: string; desc: string; cta: string; tier: Tier }[] = [
   {
     icon: Users,
     title: "Multiple Contractor Quotes",
     desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
     cta: "Get Quotes",
+    tier: "beginner",
   },
   {
     icon: Calculator,
     title: "Guesstimate Quotation",
     desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
     cta: "Get Estimate",
+    tier: "beginner",
   },
   {
     icon: ClipboardCheck,
     title: "Site Assessment",
     desc: "Professional on-site evaluation with a detailed scope and quote.",
     cta: "Request Assessment",
+    tier: "intermediate",
   },
   {
     icon: Zap,
     title: "Instant Booking",
     desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
     cta: "Book Now",
+    tier: "master",
   },
   {
     icon: ShieldCheck,
     title: "Home Inspection",
     desc: "Full property inspection for buyers, sellers, or maintenance.",
     cta: "Schedule Inspection",
+    tier: "intermediate",
   },
   {
     icon: CalendarClock,
     title: "Annual Maintenance",
     desc: "Year-round home maintenance plan covering all trades.",
     cta: "Learn More",
+    tier: "intermediate",
   },
+];
+
+const legend: { tier: Tier; text: string }[] = [
+  { tier: "beginner",     text: "New to this? We'll guide you" },
+  { tier: "intermediate", text: "Know what you need? We'll connect you" },
+  { tier: "master",       text: "Ready to go? Fast-track service" },
 ];
 
 const PremiumServices = () => (
   <section className="container py-16">
-    <div className="text-center mb-12">
+    <div className="text-center mb-8">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
-      <p className="text-muted-foreground text-lg">Go beyond quotes with our premium options</p>
+      <p className="text-muted-foreground text-lg mb-6">Go beyond quotes with our premium options</p>
+
+      {/* Legend */}
+      <div className="flex flex-wrap justify-center gap-4">
+        {legend.map(({ tier, text }) => (
+          <div key={tier} className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span
+              className="inline-block w-3 h-3 rounded-full flex-shrink-0"
+              style={{ backgroundColor: tierConfig[tier].color }}
+            />
+            <span>{text}</span>
+          </div>
+        ))}
+      </div>
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {services.map((s, i) => {
         const Icon = s.icon;
+        const { color, label } = tierConfig[s.tier];
         return (
-          <div key={i} className="rounded-xl border bg-card p-6 flex flex-col hover:shadow-md transition-shadow">
+          <div
+            key={i}
+            className="rounded-xl border bg-card p-6 flex flex-col hover:shadow-md transition-shadow"
+            style={{ borderLeft: `4px solid ${color}` }}
+          >
+            {/* Tier badge */}
+            <span
+              className="self-start text-xs font-semibold px-2 py-0.5 rounded-full mb-3"
+              style={{ backgroundColor: `${color}20`, color }}
+            >
+              {label}
+            </span>
+
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
               <Icon className="w-6 h-6 text-primary" />
             </div>
