@@ -5,6 +5,7 @@ import HeroSection from "@/components/home/HeroSection";
 import TradeSelector from "@/components/home/TradeSelector";
 import HowItWorks from "@/components/home/HowItWorks";
 import PremiumServices from "@/components/home/PremiumServices";
+import BrowseTrades from "@/components/home/BrowseTrades";
 import TrustSection from "@/components/home/TrustSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ServiceAreas from "@/components/home/ServiceAreas";
@@ -19,6 +20,7 @@ const Index = () => {
         <TradeSelector />
         <div className="hidden md:block"><HowItWorks /></div>
         <PremiumServices />
+        <BrowseTrades />
         <div className="hidden md:block"><TrustSection /></div>
         <TestimonialsSection />
         <ServiceAreas />
