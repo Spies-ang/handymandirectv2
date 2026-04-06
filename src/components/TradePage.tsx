@@ -10,6 +10,7 @@ import { CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PremiumServices from "@/components/home/PremiumServices";
 
 interface FAQ {
   question: string;
@@ -117,6 +118,11 @@ const TradePage = ({
         </Link>
       </div>
     </section>
+
+    {/* Premium services — pre-filled with this trade */}
+    <div className="border-t">
+      <PremiumServices tradeSlug={tradeSlug} />
+    </div>
 
     <Footer />
     <WhatsAppButton />

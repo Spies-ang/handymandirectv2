@@ -10,13 +10,21 @@ const tierConfig: Record<Tier, { color: string; label: string }> = {
   master:       { color: "#2B7BCC", label: "Master" },
 };
 
-const services: { icon: React.ElementType; title: string; desc: string; cta: string; tier: Tier }[] = [
+const services: {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+  cta: string;
+  tier: Tier;
+  serviceSlug: string;
+}[] = [
   {
     icon: Users,
     title: "Multiple Contractor Quotes",
     desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
     cta: "Get Quotes",
     tier: "beginner",
+    serviceSlug: "multiple-quotes",
   },
   {
     icon: Calculator,
@@ -24,6 +32,7 @@ const services: { icon: React.ElementType; title: string; desc: string; cta: str
     desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
     cta: "Get Estimate",
     tier: "beginner",
+    serviceSlug: "guesstimate",
   },
   {
     icon: ClipboardCheck,
@@ -31,6 +40,7 @@ const services: { icon: React.ElementType; title: string; desc: string; cta: str
     desc: "Professional on-site evaluation with a detailed scope and quote.",
     cta: "Request Assessment",
     tier: "intermediate",
+    serviceSlug: "assessment",
   },
   {
     icon: Zap,
@@ -38,6 +48,7 @@ const services: { icon: React.ElementType; title: string; desc: string; cta: str
     desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
     cta: "Book Now",
     tier: "master",
+    serviceSlug: "instant",
   },
   {
     icon: ShieldCheck,
@@ -45,6 +56,7 @@ const services: { icon: React.ElementType; title: string; desc: string; cta: str
     desc: "Full property inspection for buyers, sellers, or maintenance.",
     cta: "Schedule Inspection",
     tier: "intermediate",
+    serviceSlug: "inspection",
   },
   {
     icon: CalendarClock,
@@ -52,6 +64,7 @@ const services: { icon: React.ElementType; title: string; desc: string; cta: str
     desc: "Year-round home maintenance plan covering all trades.",
     cta: "Learn More",
     tier: "intermediate",
+    serviceSlug: "maintenance",
   },
 ];
 
@@ -61,7 +74,11 @@ const legend: { tier: Tier; text: string }[] = [
   { tier: "master",       text: "Ready to go? Fast-track service" },
 ];
 
-const PremiumServices = () => (
+interface PremiumServicesProps {
+  tradeSlug?: string;
+}
+
+const PremiumServices = ({ tradeSlug }: PremiumServicesProps = {}) => (
   <section className="container py-16">
     <div className="text-center mb-8">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
@@ -85,6 +102,9 @@ const PremiumServices = () => (
       {services.map((s, i) => {
         const Icon = s.icon;
         const { color, label } = tierConfig[s.tier];
+        const href = tradeSlug
+          ? `/book?tier=${s.tier}&service=${s.serviceSlug}&trade=${tradeSlug}`
+          : `/book?tier=${s.tier}&service=${s.serviceSlug}`;
         return (
           <div
             key={i}
@@ -104,7 +124,7 @@ const PremiumServices = () => (
             </div>
             <h3 className="font-display font-bold text-foreground mb-2">{s.title}</h3>
             <p className="text-sm text-muted-foreground flex-1 mb-4">{s.desc}</p>
-            <Link to="/book">
+            <Link to={href}>
               <Button variant="outline" size="sm" className="w-full">{s.cta}</Button>
             </Link>
           </div>
