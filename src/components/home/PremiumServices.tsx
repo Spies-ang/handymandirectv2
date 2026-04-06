@@ -43,14 +43,6 @@ const services: {
     serviceSlug: "assessment",
   },
   {
-    icon: Zap,
-    title: "Instant Booking",
-    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
-    cta: "Book Now",
-    tier: "master",
-    serviceSlug: "instant",
-  },
-  {
     icon: ShieldCheck,
     title: "Home Inspection",
     desc: "Full property inspection for buyers, sellers, or maintenance.",
@@ -65,6 +57,14 @@ const services: {
     cta: "Learn More",
     tier: "intermediate",
     serviceSlug: "maintenance",
+  },
+  {
+    icon: Zap,
+    title: "Instant Booking",
+    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
+    cta: "Book Now",
+    tier: "master",
+    serviceSlug: "instant",
   },
 ];
 
