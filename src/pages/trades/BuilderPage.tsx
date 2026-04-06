@@ -17,13 +17,8 @@ const BuilderPage = () => (
       "Wendy houses and outbuildings",
       "NHBRC registration and compliance",
     ]}
-    blogIntro={`Building or extending your home is one of the biggest investments you'll make. In South Africa, any structural work above a certain value requires approved plans from your local municipality and, for new homes, registration with the NHBRC (National Home Builders Registration Council).
-
-Always verify that your builder is NHBRC-registered. This protects you under the Housing Consumers Protection Measures Act — meaning defects discovered within 5 years must be rectified at no cost to you.
-
-Before breaking ground, ensure you have approved building plans. An unapproved structure can result in a demolition order from your municipality, even years after construction. Your builder should be able to assist you in obtaining plans through a draughtsperson or architect.
-
-Get at least three quotes and ask each builder for a detailed Bill of Quantities (BOQ). This breaks down materials, labour, and timeframes so you can compare apples with apples. Be wary of any quote significantly lower than the others — it often signals corners will be cut on materials or labour.`}
+    blogIntro="Building or extending your home is one of the biggest investments you'll make. In South Africa, any structural work above a certain value requires approved plans from your local municipality and, for new homes, registration with the NHBRC (National Home Builders Registration Council). Always verify that your builder is NHBRC-registered — this protects you under the Housing Consumers Protection Measures Act, meaning defects discovered within 5 years must be rectified at no cost to you."
+    blogContent="Before breaking ground, ensure you have approved building plans. An unapproved structure can result in a demolition order from your municipality, even years after construction. Your builder should assist you in obtaining plans through a draughtsperson or architect. Get at least three quotes and ask each builder for a detailed Bill of Quantities (BOQ) that breaks down materials, labour, and timeframes so you can compare apples with apples. Be wary of any quote significantly lower than the others — it often signals corners will be cut on materials or labour."
     faqs={[
       {
         question: "Does my builder need to be NHBRC registered?",

@@ -17,13 +17,8 @@ const RooferPage = () => (
       "Ridge cap and flashing repairs",
       "Full roof replacements and reroofing",
     ]}
-    blogIntro={`Your roof is your home's first line of defence against the elements — and in South Africa, it takes a beating. From the violent hailstorms of Gauteng to the Cape's driving winter rains and the coastal humidity of KwaZulu-Natal, roofs face extreme and varied conditions.
-
-The most common roofing material in South Africa is IBR (Inverted Box Rib) sheeting — a corrugated steel profile available in Chromadek (pre-painted) or galvanised finishes. Chromadek roofs typically last 15–25 years before they require replacement, depending on exposure. Coastal properties face accelerated corrosion from salt air and may require more frequent inspection.
-
-Tile roofs — both concrete and clay — are popular on older and higher-end homes. Individual tiles can crack or slip, allowing water ingress. A roofer can often repair tile damage without a full replacement, provided the underlying sarking (roofing membrane) and timber battens are in good condition.
-
-Never ignore a roof leak. Water ingress may seem minor but travels along rafters and ceiling joists before dripping through, meaning the source is often metres from where the leak appears inside. Prompt repair prevents structural timber damage, ceiling board failure, and mould growth.`}
+    blogIntro="Your roof is your home's first line of defence against the elements — and in South Africa, it takes a beating. From the violent hailstorms of Gauteng to the Cape's driving winter rains and the coastal humidity of KwaZulu-Natal, roofs face extreme and varied conditions. The most common roofing material in South Africa is IBR (Inverted Box Rib) sheeting in Chromadek or galvanised finishes, typically lasting 15–25 years before replacement depending on exposure."
+    blogContent="Never ignore a roof leak — water ingress may seem minor but travels along rafters and ceiling joists before dripping through, meaning the source is often metres from where the leak appears inside. Prompt repair prevents structural timber damage, ceiling board failure, and mould growth. Tile roofs — both concrete and clay — are popular on older and higher-end homes, and individual tiles can crack or slip, allowing water ingress that a roofer can often repair without a full replacement, provided the sarking and battens are still sound."
     faqs={[
       {
         question: "How do I find where a roof leak is coming from?",

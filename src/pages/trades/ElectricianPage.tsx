@@ -17,13 +17,8 @@ const ElectricianPage = () => (
       "Electric fence energiser installation",
       "Pre-sale electrical inspections",
     ]}
-    blogIntro={`Electrical work in South Africa is regulated under SANS 10142-1 and must be carried out by a registered electrician. Only a registered person can legally issue a Certificate of Compliance (COC) — a document required by law when selling a property or after any new electrical installation.
-
-A COC certifies that your electrical installation meets the national standard at the time of issue. Without one, your home insurance may not pay out in the event of an electrical fire. When buying a home, always request a current COC from the seller.
-
-South Africa's energy landscape has changed significantly. Loadshedding has driven demand for solar PV systems, inverters, and battery backup solutions. If you're considering solar, ensure your electrician is registered with the ECSA (Engineering Council of South Africa) or is a certified installer recognised by your municipality, as grid-tied systems require council approval.
-
-DB board (distribution board) upgrades are increasingly common as homes add more high-draw appliances. An overloaded or outdated DB board is a fire risk — if your circuit breakers trip frequently or your DB board is older than 15 years, a professional assessment is recommended.`}
+    blogIntro="Electrical work in South Africa is regulated under SANS 10142-1 and must be carried out by a registered electrician. Only a registered person can legally issue a Certificate of Compliance (COC) — a document required by law when selling a property or after any new electrical installation. A COC certifies that your electrical installation meets the national standard at the time of issue, and without one, your home insurance may not pay out in the event of an electrical fire."
+    blogContent="South Africa's energy landscape has changed significantly. Load shedding has driven demand for solar PV systems, inverters, and battery backup solutions. If you're considering solar, ensure your electrician is registered with the ECSA or is a certified installer recognised by your municipality, as grid-tied systems require council approval. DB board upgrades are increasingly common as homes add more high-draw appliances — an overloaded or outdated DB board is a fire risk, and if your circuit breakers trip frequently or your board is older than 15 years, a professional assessment is strongly recommended."
     faqs={[
       {
         question: "What is a COC and when do I need one?",

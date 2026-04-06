@@ -17,13 +17,8 @@ const RenovatorPage = () => (
       "Granny flat and flatlet conversions",
       "Multi-trade project coordination",
     ]}
-    blogIntro={`Renovation projects are the most complex home improvement undertaking — they involve multiple trades, sequencing decisions, and significant financial investment. The difference between a smooth renovation and a nightmare often comes down to planning and contractor selection.
-
-Kitchen and bathroom renovations offer the highest return on investment in the South African property market. A well-executed kitchen remodel can add 5–15% to a home's value. The key is to balance quality finishes with the value ceiling of your suburb — over-capitalising on a renovation in a lower-value area seldom returns the full investment.
-
-When planning a renovation, sequence is everything. Typically: demolition first, then structural work, rough plumbing and electrical, waterproofing, tiling, cabinetry and joinery, final electrical and plumbing fit-off, plastering, painting, and finally floor coverings and fixtures. Disrupting this sequence causes costly rework.
-
-Budget for a 10–15% contingency on any renovation. Hidden surprises — old wiring, rising damp behind tiles, substandard previous work — are common in South African homes, particularly in properties built before 1990.`}
+    blogIntro="Renovation projects are the most complex home improvement undertaking — they involve multiple trades, sequencing decisions, and significant financial investment. Kitchen and bathroom renovations offer the highest return on investment in the South African property market, with a well-executed kitchen remodel potentially adding 5–15% to a home's value. The key is to balance quality finishes with the value ceiling of your suburb — over-capitalising in a lower-value area seldom returns the full investment."
+    blogContent="When planning a renovation, sequence is everything: demolition first, then structural work, rough plumbing and electrical, waterproofing, tiling, cabinetry and joinery, final fit-off, plastering, painting, and finally floor coverings and fixtures. Disrupting this sequence causes costly rework. Always budget for a 10–15% contingency — hidden surprises like old wiring, rising damp behind tiles, and substandard previous work are common in South African homes, particularly in properties built before 1990."
     faqs={[
       {
         question: "How long does a kitchen renovation take?",
@@ -43,7 +38,7 @@ Budget for a 10–15% contingency on any renovation. Hidden surprises — old wi
       },
       {
         question: "How do I avoid renovation cost overruns?",
-        answer: "Get a detailed, itemised quote before starting. Lock in material costs upfront where possible. Maintain a 10–15% contingency budget. Avoid scope changes once work has started — every change costs more mid-renovation than it would have at planning stage.",
+        answer: "Get a detailed, itemised quote before starting. Lock in material costs upfront where possible. Maintain a 10–15% contingency budget. Avoid scope changes once work has started — every change costs more mid-renovation than at planning stage.",
       },
     ]}
   />

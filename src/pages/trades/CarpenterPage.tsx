@@ -17,13 +17,8 @@ const CarpenterPage = () => (
       "Furniture assembly and repairs",
       "Wooden staircase construction",
     ]}
-    blogIntro={`Custom carpentry adds significant value to your home — both aesthetically and in terms of functionality. South African homeowners commonly invest in built-in cupboards, wooden decks, and laminate flooring as high-return upgrades before selling or simply to improve daily living.
-
-When commissioning built-in cupboards, clarify whether the quote includes carcass material (chipboard vs. melamine), door finish (PVC wrap, solid wood, or lacquered), and hardware (hinges, drawer runners, and handles). These choices have a major impact on both cost and longevity.
-
-For wooden decking, hardwoods like Balau and Saligna are popular in South Africa for their durability and resistance to weathering. Softwood decks are cheaper upfront but require more maintenance and may not last as long in South African conditions.
-
-Always ask your carpenter for examples of previous work and check that cut edges are sealed to prevent swelling from moisture — a common issue in coastal and highveld storm regions.`}
+    blogIntro="Custom carpentry adds significant value to your home — both aesthetically and in terms of functionality. South African homeowners commonly invest in built-in cupboards, wooden decks, and laminate flooring as high-return upgrades before selling or simply to improve daily living. When commissioning built-in cupboards, clarify whether the quote includes carcass material (chipboard vs. melamine), door finish (PVC wrap, solid wood, or lacquered), and hardware (hinges, drawer runners, and handles)."
+    blogContent="For wooden decking, hardwoods like Balau and Saligna are popular in South Africa for their durability and resistance to weathering. Softwood decks are cheaper upfront but require more maintenance and may not last as long in South African conditions. Always ask your carpenter for examples of previous work and check that cut edges are sealed to prevent swelling from moisture — a common issue in coastal and highveld storm regions."
     faqs={[
       {
         question: "How much do built-in cupboards cost in South Africa?",

@@ -17,13 +17,8 @@ const PainterPage = () => (
       "Timber and door varnishing",
       "Pre-sale painting and touch-ups",
     ]}
-    blogIntro={`A fresh coat of paint is the most cost-effective way to transform your home — inside and out. In South Africa's varied climate, from the UV intensity of the Highveld to the moisture-heavy Cape winters, choosing the right paint system is as important as the application quality.
-
-For exterior painting, surface preparation is everything. Old, flaking paint must be fully scraped and sanded before any new coat is applied. Skipping this step is the most common reason exterior paint fails within 2–3 years. A good painter will spend more time preparing than painting.
-
-Waterproofing should be addressed before painting if you have damp walls, parapet walls, or a flat roof. Painting over damp without treatment will cause paint failure within months. Reputable painters use systems like Dulux Weatherguard, Plascon Micatex, or dedicated waterproofing coatings like Sika or Chryso.
-
-For interior painting, always use a good primer on new plaster or repainted surfaces. PVA is suitable for most interior walls, while kitchens and bathrooms benefit from a washable or semi-gloss finish that resists moisture and marks.`}
+    blogIntro="A fresh coat of paint is the most cost-effective way to transform your home — inside and out. In South Africa's varied climate, from the UV intensity of the Highveld to the moisture-heavy Cape winters, choosing the right paint system is as important as the application quality. For exterior painting, surface preparation is everything — old, flaking paint must be fully scraped and sanded before any new coat is applied, and skipping this step is the most common reason exterior paint fails within 2–3 years."
+    blogContent="Waterproofing should be addressed before painting if you have damp walls, parapet walls, or a flat roof. Painting over damp without treatment will cause paint failure within months. Reputable painters use systems like Dulux Weatherguard, Plascon Micatex, or dedicated waterproofing coatings like Sika or Chryso. For interior painting, always use a good primer on new plaster or repainted surfaces — PVA is suitable for most interior walls, while kitchens and bathrooms benefit from a washable or semi-gloss finish that resists moisture and marks."
     faqs={[
       {
         question: "How much does it cost to paint a house exterior in South Africa?",

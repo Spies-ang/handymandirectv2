@@ -17,13 +17,8 @@ const TilerPage = () => (
       "Screed and level floor preparation",
       "Tile repair and replacement",
     ]}
-    blogIntro={`Tiling is one of the most technically demanding finishing trades. A beautiful tile can look terrible if it's not laid plumb, level, and with consistent joints. In South Africa's climate, the correct adhesive and grout choice also makes the difference between a long-lasting installation and one that cracks or loosens within a few years.
-
-Wet areas — bathrooms, showers, and around swimming pools — require waterproofing before tiling. This is non-negotiable. Without a waterproof membrane, moisture penetrates grout lines and adhesive beds, causing tiles to lift, mould to grow, and structural damage to occur over time. A reputable tiler will include waterproofing in their quote for wet areas.
-
-Large-format tiles (600x600mm and above) have become the dominant choice in modern South African homes. They create a seamless look with minimal grout lines, but require a perfectly level substrate. Any deviation greater than 3mm over 2 metres must be corrected with screed or a self-levelling compound before tiling.
-
-For outdoor tiles, ensure your tiler specifies tiles with an R9 or higher anti-slip rating for areas that get wet. Smooth porcelain tiles — beautiful indoors — become dangerously slippery outside when wet.`}
+    blogIntro="Tiling is one of the most technically demanding finishing trades. A beautiful tile can look terrible if it's not laid plumb, level, and with consistent joints. In South Africa's climate, the correct adhesive and grout choice also makes the difference between a long-lasting installation and one that cracks or loosens within a few years. Wet areas — bathrooms, showers, and around swimming pools — require waterproofing before tiling, without which moisture penetrates grout lines causing tiles to lift, mould to grow, and structural damage to occur."
+    blogContent="Large-format tiles (600x600mm and above) have become the dominant choice in modern South African homes, creating a seamless look with minimal grout lines — but they require a perfectly level substrate. Any deviation greater than 3mm over 2 metres must be corrected with screed or self-levelling compound before tiling. For outdoor tiles, ensure your tiler specifies tiles with an R9 or higher anti-slip rating for areas that get wet — smooth porcelain tiles that look beautiful indoors become dangerously slippery outside."
     faqs={[
       {
         question: "Do I need waterproofing before tiling a bathroom?",
@@ -43,7 +38,7 @@ For outdoor tiles, ensure your tiler specifies tiles with an R9 or higher anti-s
       },
       {
         question: "What causes grout to crack or discolour?",
-        answer: "Cracking grout usually indicates movement in the substrate or tiles, or inadequate adhesive coverage. Discolouration is typically caused by mould from moisture and lack of regular sealing. Unsanded grout in thin joints is more prone to cracking than wide-joint epoxy grout.",
+        answer: "Cracking grout usually indicates movement in the substrate or tiles, or inadequate adhesive coverage. Discolouration is typically caused by mould from moisture and lack of regular sealing. Epoxy grout in wide joints is more durable than standard cement grout.",
       },
     ]}
   />

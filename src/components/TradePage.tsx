@@ -7,6 +7,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CheckCircle } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 interface FAQ {
   question: string;
@@ -20,10 +23,21 @@ interface TradePageProps {
   services: string[];
   faqs: FAQ[];
   blogIntro: string;
+  blogContent: string;
 }
 
-const TradePage = ({ tradeName, tradeSlug, heroDescription, services, faqs, blogIntro }: TradePageProps) => (
-  <div className="min-h-screen bg-background">
+const TradePage = ({
+  tradeName,
+  tradeSlug,
+  heroDescription,
+  services,
+  faqs,
+  blogIntro,
+  blogContent,
+}: TradePageProps) => (
+  <div className="min-h-screen bg-background flex flex-col">
+    <Header />
+
     {/* Hero */}
     <section className="bg-primary/5 border-b">
       <div className="container py-16 md:py-24">
@@ -39,19 +53,22 @@ const TradePage = ({ tradeName, tradeSlug, heroDescription, services, faqs, blog
       </div>
     </section>
 
-    {/* Services */}
+    {/* Services cards */}
     <section className="container py-14">
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">
         What our {tradeName.toLowerCase()}s do
       </h2>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service, i) => (
-          <li key={i} className="flex items-start gap-3">
+          <div
+            key={i}
+            className="flex items-start gap-3 rounded-xl border bg-card p-4 hover:shadow-sm transition-shadow"
+          >
             <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-            <span className="text-foreground">{service}</span>
-          </li>
+            <span className="text-foreground text-sm font-medium">{service}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
 
     {/* Blog-style content */}
@@ -60,8 +77,9 @@ const TradePage = ({ tradeName, tradeSlug, heroDescription, services, faqs, blog
         <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
           Hiring a {tradeName} in South Africa
         </h2>
-        <div className="prose prose-neutral max-w-3xl text-muted-foreground leading-relaxed whitespace-pre-line">
-          {blogIntro}
+        <div className="max-w-3xl space-y-4 text-muted-foreground leading-relaxed">
+          <p>{blogIntro}</p>
+          <p>{blogContent}</p>
         </div>
       </div>
     </section>
@@ -99,6 +117,9 @@ const TradePage = ({ tradeName, tradeSlug, heroDescription, services, faqs, blog
         </Link>
       </div>
     </section>
+
+    <Footer />
+    <WhatsAppButton />
   </div>
 );
 

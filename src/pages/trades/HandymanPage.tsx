@@ -17,13 +17,8 @@ const HandymanPage = () => (
       "Fence and gate repairs",
       "Odd jobs and general maintenance",
     ]}
-    blogIntro={`A good handyman is one of the most valuable contacts a South African homeowner can have. For the dozens of small jobs that don't warrant a specialist trade — a stiff door, a dripping tap, a wall mount for a new TV — a handyman gets it done quickly and at a fraction of the cost.
-
-The key to a good handyman relationship is clear communication. Before the visit, make a consolidated list of everything you want done. Grouping small jobs into a single visit saves both time and call-out fees. Most handymen charge either an hourly rate (typically R250–R550/hr) or a flat rate per job.
-
-While handymen handle a wide range of tasks, it's worth knowing the boundaries: structural electrical work, COC-required work, and new plumbing installations should be handled by licensed tradespeople. A reputable handyman will tell you upfront if a job falls outside their scope.
-
-For rental property owners, a regular handyman on retainer is a cost-effective way to maintain properties between tenants and respond to tenant maintenance calls without involving specialist contractors for every small issue.`}
+    blogIntro="A good handyman is one of the most valuable contacts a South African homeowner can have. For the dozens of small jobs that don't warrant a specialist trade — a stiff door, a dripping tap, a wall mount for a new TV — a handyman gets it done quickly and at a fraction of the cost. Most handymen charge either an hourly rate (typically R250–R550/hr) or a flat rate per job, and grouping small tasks into a single visit saves both time and call-out fees."
+    blogContent="While handymen handle a wide range of tasks, it's worth knowing the boundaries: structural electrical work, COC-required work, and new plumbing installations should be handled by licensed tradespeople. A reputable handyman will tell you upfront if a job falls outside their scope. For rental property owners, a regular handyman on retainer is a cost-effective way to maintain properties between tenants and respond to maintenance calls without involving specialist contractors for every small issue."
     faqs={[
       {
         question: "What's the difference between a handyman and a specialist contractor?",

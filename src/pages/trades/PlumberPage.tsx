@@ -17,13 +17,8 @@ const PlumberPage = () => (
       "Borehole pump installation",
       "Pre-sale plumbing compliance certificates",
     ]}
-    blogIntro={`Plumbing is one of those trades where the cost of getting it wrong far exceeds the cost of getting it right. A geyser that's incorrectly installed or maintained can result in floods, structural damage, and voided insurance claims.
-
-Geysers are the single most common plumbing issue in South African homes. The average geyser lasts 8–12 years — after that, the risk of failure increases significantly. Geyser replacement typically takes half a day and includes installation of the geyser, pressure control valve, drip tray, and vacuum breaker, all of which are required under SANS 10254 (the South African standard for hot water installations).
-
-When a geyser bursts, the immediate priority is to isolate the water supply. Know where your main stop valve is located — typically in the garage, under the kitchen sink, or at the boundary of the property. Once isolated, call a plumber. Most burst geyser replacements can be completed within 24–48 hours.
-
-Leak detection is increasingly high-tech in South Africa. Non-invasive acoustic leak detection can locate underground or in-slab pipe leaks without unnecessary digging. If your water bill spikes unexpectedly, it's worth calling a plumber to test for invisible leaks.`}
+    blogIntro="Plumbing is one of those trades where the cost of getting it wrong far exceeds the cost of getting it right. A geyser that's incorrectly installed or maintained can result in floods, structural damage, and voided insurance claims. Geysers are the single most common plumbing issue in South African homes — the average geyser lasts 8–12 years, after which the risk of failure increases significantly. Replacement typically includes the geyser, pressure control valve, drip tray, and vacuum breaker, all required under SANS 10254."
+    blogContent="When a geyser bursts, the immediate priority is to isolate the water supply — know where your main stop valve is located, typically in the garage, under the kitchen sink, or at the boundary of the property. Leak detection is increasingly high-tech in South Africa: non-invasive acoustic detection can locate underground or in-slab pipe leaks without unnecessary digging. If your water bill spikes unexpectedly, it's worth calling a plumber to test for invisible leaks before the damage compounds."
     faqs={[
       {
         question: "What should I do if my geyser bursts?",
@@ -39,11 +34,11 @@ Leak detection is increasingly high-tech in South Africa. Non-invasive acoustic 
       },
       {
         question: "My water bill has spiked — could I have a leak?",
-        answer: "Yes. Check your meter at night when no water is being used — if it's still moving, you have a leak somewhere. Common culprits are toilet cisterns (silent leaks), irrigation pipes, and underground supply pipes. A plumber can perform a pressure test to identify the source.",
+        answer: "Yes. Check your meter at night when no water is being used — if it's still moving, you have a leak. Common culprits are toilet cisterns (silent leaks), irrigation pipes, and underground supply pipes. A plumber can perform a pressure test to identify the source.",
       },
       {
         question: "Is a heat pump worth it compared to a standard geyser?",
-        answer: "In most South African climates, yes. A heat pump uses 60–75% less electricity than a traditional element-based geyser, which can save R400–R800 per month on electricity. The higher upfront cost is typically recovered within 2–4 years.",
+        answer: "In most South African climates, yes. A heat pump uses 60–75% less electricity than a traditional element-based geyser, saving R400–R800 per month on electricity. The higher upfront cost is typically recovered within 2–4 years.",
       },
     ]}
   />

@@ -17,13 +17,8 @@ const PaverPage = () => (
       "Exposed aggregate driveways",
       "Retaining walls and step construction",
     ]}
-    blogIntro={`A well-paved driveway or patio adds immediate kerb appeal and usable outdoor living space. In South Africa, clay brick pavers and concrete cobbles are the most popular choices — durable, low-maintenance, and suited to the local climate.
-
-The key to long-lasting paving is what's underneath. A proper sub-base of compacted G5 or crusher run material, at least 100mm deep, prevents paving from sinking, shifting, or cracking. Cutting corners on the sub-base is the number one cause of paving failure — especially on driveways that bear vehicle weight.
-
-Drainage is equally critical. Paving must be laid with a slight gradient (typically 1:50) to direct water away from structures. Inadequate falls lead to pooling water, which causes efflorescence (white salt staining) and eventual sub-base erosion.
-
-For driveways, discuss the expected loads with your paver. Domestic vehicles require a different spec than trucks or heavy machinery. A thicker sand bed and denser sub-base are needed for heavier use.`}
+    blogIntro="A well-paved driveway or patio adds immediate kerb appeal and usable outdoor living space. In South Africa, clay brick pavers and concrete cobbles are the most popular choices — durable, low-maintenance, and suited to the local climate. The key to long-lasting paving is what's underneath: a proper sub-base of compacted G5 or crusher run material, at least 100mm deep, prevents paving from sinking, shifting, or cracking."
+    blogContent="Drainage is equally critical — paving must be laid with a slight gradient (typically 1:50) to direct water away from structures. Inadequate falls lead to pooling water, which causes efflorescence (white salt staining) and eventual sub-base erosion. For driveways, discuss the expected loads with your paver: domestic vehicles require a different spec than trucks or heavy machinery, and a thicker sand bed and denser sub-base are needed for heavier use."
     faqs={[
       {
         question: "How much does driveway paving cost per square metre in South Africa?",

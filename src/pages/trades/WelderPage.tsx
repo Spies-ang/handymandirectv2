@@ -17,13 +17,8 @@ const WelderPage = () => (
       "Structural steel and I-beam work",
       "Welding repairs and modifications",
     ]}
-    blogIntro={`Steel fabrication and welding is a critical trade in South African security and construction. With home security a top priority for most homeowners, welders are in constant demand for burglar bars, security gates, and perimeter fencing — and the quality of this work directly affects both security and property aesthetics.
-
-Security design has evolved significantly. The standard tubular burglar bars of the 1980s have largely given way to more aesthetically considered designs — decorative steel, sliding security gates with automation, and palisade fencing that balances visibility with access control. A skilled fabricator can design and manufacture these to your specification.
-
-For automated gates, the welding and installation of the gate structure is separate from the automation motor and control panel — typically done by the same contractor or in coordination with an access control specialist. Ensure your gate is structurally sound before automation is fitted, as an unbalanced or warped gate will destroy motors prematurely.
-
-Structural steel work — I-beams, lintels, and load-bearing columns — requires a welder with structural welding certification. This is not the same skill as fabrication welding. Always confirm your welder's qualifications for structural applications, as substandard welds in structural elements pose serious safety risks.`}
+    blogIntro="Steel fabrication and welding is a critical trade in South African security and construction. With home security a top priority for most homeowners, welders are in constant demand for burglar bars, security gates, and perimeter fencing — and the quality of this work directly affects both security and property aesthetics. Security design has evolved significantly, with decorative steel, automated sliding gates, and palisade fencing replacing the basic tubular bars of the past."
+    blogContent="For automated gates, the gate structure must be sound before automation is fitted — an unbalanced or warped gate will destroy motors prematurely. Structural steel work (I-beams, lintels, and load-bearing columns) requires a welder with structural welding certification, which is a different and higher qualification than fabrication welding. All welded steel should be properly cleaned, primed, and painted before installation, and in coastal areas hot-dip galvanised or stainless steel is recommended to resist salt-air corrosion."
     faqs={[
       {
         question: "How much do burglar bars cost in South Africa?",

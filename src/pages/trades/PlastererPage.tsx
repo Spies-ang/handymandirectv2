@@ -17,13 +17,8 @@ const PlastererPage = () => (
       "Hardwall and base coat application",
       "Waterproof plaster for wet areas",
     ]}
-    blogIntro={`Good plastering is the foundation of any quality paint job. Poorly skimmed walls will show every imperfection under paint — especially in raking light. In South Africa, most new builds use a cement and sand render base coat, finished with a skim coat of fine plaster or filler-based compound.
-
-Crack repairs are one of the most common plastering jobs in South African homes. Hairline cracks are normal as buildings settle and expand with temperature changes, but wider cracks (over 3mm) may indicate structural movement and should be assessed before plastering over them.
-
-Damp is another major plastering challenge. Rising damp from the ground and penetrating damp from external walls require specific plaster treatments — ordinary plaster over a damp wall will bubble and fail within months. Tanking plaster (a dense, waterproof render) is used in below-ground areas or highly exposed external walls.
-
-For renovation projects, existing old plaster often needs to be assessed for soundness before repainting or reskimming. Hollow-sounding or soft plaster should be hacked off and replaced rather than plastered over.`}
+    blogIntro="Good plastering is the foundation of any quality paint job. Poorly skimmed walls will show every imperfection under paint — especially in raking light. In South Africa, most new builds use a cement and sand render base coat, finished with a skim coat of fine plaster or filler-based compound. Crack repairs are one of the most common plastering jobs in South African homes — hairline cracks are normal as buildings settle and expand with temperature changes, but wider cracks (over 3mm) may indicate structural movement and should be assessed before plastering over."
+    blogContent="Damp is another major plastering challenge. Rising damp from the ground and penetrating damp from external walls require specific plaster treatments — ordinary plaster over a damp wall will bubble and fail within months. Tanking plaster (a dense, waterproof render) is used in below-ground areas or highly exposed external walls. For renovation projects, existing old plaster often needs to be assessed for soundness before repainting or reskimming — hollow-sounding or soft plaster should be hacked off and replaced rather than plastered over."
     faqs={[
       {
         question: "How long does new plaster take to dry before painting?",
