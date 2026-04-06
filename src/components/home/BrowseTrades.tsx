@@ -33,7 +33,7 @@ const BrowseTrades = () => (
         return (
           <Link
             key={trade.slug}
-            to={`/trades/${trade.slug}`}
+            to={`/trade/${trade.slug}`}
             className="group flex flex-col gap-3 p-5 rounded-xl border bg-card hover:border-primary hover:shadow-md transition-all"
           >
             <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">

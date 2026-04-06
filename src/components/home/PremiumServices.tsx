@@ -76,9 +76,18 @@ const legend: { tier: Tier; text: string }[] = [
 
 interface PremiumServicesProps {
   tradeSlug?: string;
+  orderOverride?: string[];
 }
 
-const PremiumServices = ({ tradeSlug }: PremiumServicesProps = {}) => (
+const PremiumServices = ({ tradeSlug, orderOverride }: PremiumServicesProps = {}) => {
+  const orderedServices = orderOverride
+    ? [...services].sort(
+        (a, b) =>
+          (orderOverride.indexOf(a.serviceSlug) + 1 || orderOverride.length + 1) -
+          (orderOverride.indexOf(b.serviceSlug) + 1 || orderOverride.length + 1)
+      )
+    : services;
+  return (
   <section className="container py-16">
     <div className="text-center mb-8">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
@@ -99,7 +108,7 @@ const PremiumServices = ({ tradeSlug }: PremiumServicesProps = {}) => (
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {services.map((s, i) => {
+      {orderedServices.map((s, i) => {
         const Icon = s.icon;
         const { color, label } = tierConfig[s.tier];
         const href = tradeSlug
@@ -132,6 +141,7 @@ const PremiumServices = ({ tradeSlug }: PremiumServicesProps = {}) => (
       })}
     </div>
   </section>
-);
+  );
+};
 
 export default PremiumServices;

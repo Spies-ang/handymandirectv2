@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+import { trades } from "@/data/seoData";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,6 +36,18 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Home</Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors outline-none">
+              Trades <ChevronDown className="w-3 h-3" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="w-48 max-h-80 overflow-y-auto">
+              {trades.map((t) => (
+                <DropdownMenuItem key={t.slug} onClick={() => navigate(`/trade/${t.slug}`)}>
+                  {t.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link to={postJobPath} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Post a Job</Link>
           <Link to="/contractors" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">For Contractors</Link>
           <Link to="/faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
@@ -92,6 +105,21 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden border-t bg-background p-4 space-y-3">
           <Link to="/" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Home</Link>
+          <div>
+            <p className="text-sm font-medium py-2">Trades</p>
+            <div className="pl-3 grid grid-cols-2 gap-1">
+              {trades.map((t) => (
+                <Link
+                  key={t.slug}
+                  to={`/trade/${t.slug}`}
+                  className="text-sm text-muted-foreground py-1 hover:text-foreground"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.name}
+                </Link>
+              ))}
+            </div>
+          </div>
           <Link to={postJobPath} className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>Post a Job</Link>
           <Link to="/contractors" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>For Contractors</Link>
           <Link to="/faq" className="block text-sm font-medium py-2" onClick={() => setMenuOpen(false)}>FAQ</Link>

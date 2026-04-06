@@ -37,7 +37,7 @@ const TradeSelector = () => {
 
       {/* Mobile dropdown — hidden on md+ */}
       <div className="md:hidden">
-        <Select onValueChange={(slug) => navigate(`/trades/${slug}`)}>
+        <Select onValueChange={(slug) => navigate(`/trade/${slug}`)}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select a trade..." />
           </SelectTrigger>
@@ -58,7 +58,7 @@ const TradeSelector = () => {
           return (
             <Link
               key={trade.slug}
-              to={`/trades/${trade.slug}`}
+              to={`/trade/${trade.slug}`}
               className="group flex flex-col items-center gap-2 p-5 rounded-xl border bg-card hover:border-primary hover:shadow-md transition-all text-center"
             >
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
