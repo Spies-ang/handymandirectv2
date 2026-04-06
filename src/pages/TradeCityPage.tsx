@@ -33,6 +33,7 @@ const TradeCityPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
+
         {/* Hero */}
         <section className="bg-secondary/50 py-16">
           <div className="container max-w-3xl text-center">
@@ -43,11 +44,10 @@ const TradeCityPage = () => {
             <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground leading-tight mb-4">
               <span className="text-primary">{trade.name}</span> in {city.name}
             </h1>
-            <p className="text-lg text-muted-foreground mb-4">
+            <p className="text-lg text-muted-foreground mb-8">
               Find verified {trade.name.toLowerCase()}s in {city.name} and surrounding suburbs.{" "}
               {trade.description}
             </p>
-            <p className="text-sm font-medium text-primary mb-6">Typical rates: {trade.priceRange}</p>
             <Link to={`/book?trade=${trade.slug}`}>
               <Button size="lg" className="gap-2 text-base px-8">
                 Find a {trade.name} in {city.name} <ArrowRight className="w-4 h-4" />
@@ -56,14 +56,31 @@ const TradeCityPage = () => {
           </div>
         </section>
 
+        {/* Green CTA banner */}
+        <section className="bg-green-50 border-l-4 border-green-600 py-8">
+          <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h2 className="font-display text-xl font-bold text-green-900 mb-1">Ready to get started?</h2>
+              <p className="text-green-800 text-sm">
+                Post your {trade.name} job in 60 seconds and get matched with verified contractors in {city.name}.
+              </p>
+            </div>
+            <Link to={`/book?trade=${trade.slug}`} className="shrink-0">
+              <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+                Post a Job Now <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+
         {/* Services */}
         <section className="container py-16">
-          <h2 className="font-display text-3xl font-bold text-foreground text-center mb-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
             {trade.name} Services in {city.name}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {trade.services.map((s) => (
-              <div key={s} className="flex items-center gap-3 p-4 rounded-lg border bg-card">
+              <div key={s} className="rounded-xl border bg-card p-6 flex items-center gap-3 hover:shadow-md transition-shadow">
                 <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-foreground font-medium">{s}</span>
               </div>
@@ -72,12 +89,12 @@ const TradeCityPage = () => {
         </section>
 
         {/* Suburbs */}
-        <section className="bg-muted/50 py-16">
+        <section className="bg-muted/40 border-y py-16">
           <div className="container">
-            <h2 className="font-display text-3xl font-bold text-foreground text-center mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
               {trade.name}s Available In These {city.name} Suburbs
             </h2>
-            <p className="text-center text-muted-foreground mb-8">We cover all major suburbs and surrounding areas</p>
+            <p className="text-center text-muted-foreground mb-10">We cover all major suburbs and surrounding areas</p>
             <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto">
               {city.suburbs.map((suburb) => (
                 <span key={suburb} className="bg-background border rounded-full px-4 py-2 text-sm font-medium text-foreground">
@@ -90,10 +107,10 @@ const TradeCityPage = () => {
 
         {/* FAQ */}
         <section className="container py-16">
-          <h2 className="font-display text-3xl font-bold text-foreground text-center mb-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
             {trade.name} in {city.name} — FAQ
           </h2>
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-3">
               {trade.faqs.map((faq, i) => (
                 <AccordionItem key={i} value={`faq-${i}`} className="border rounded-xl px-5">
@@ -119,6 +136,7 @@ const TradeCityPage = () => {
             </Link>
           </div>
         </section>
+
       </main>
       <Footer />
       <WhatsAppButton />

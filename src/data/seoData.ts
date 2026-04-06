@@ -8,10 +8,11 @@ export interface TradeData {
   blogContent: string;
   services: string[];
   faqs: { q: string; a: string }[];
-  priceRange: string;
   recommendedServices: string[];
+  image?: string;
 }
 
+// TODO: Add Unsplash photo URLs to each trade. Format: https://images.unsplash.com/photo-{id}?w=1600&q=80&auto=format&fit=crop. Right-click photo on unsplash.com -> Copy image address.
 export const trades: TradeData[] = [
   {
     name: "Builder",
@@ -23,15 +24,15 @@ export const trades: TradeData[] = [
     blogContent: "When it comes to extensions and additions, your builder will typically handle the full process: drawing up plans, submitting to the local municipality for approval, and managing all trades on site. Structural work such as retaining walls, boundary walls, and underpinning requires an engineer's sign-off in most South African municipalities. Our platform connects you with builders experienced in residential, commercial, and industrial projects, so you can find the right match for your specific scope.",
     services: ["House building", "Extensions & additions", "Boundary walls", "Structural repairs", "Retaining walls", "Garage construction", "Carport installation", "Demolition & site clearance"],
     faqs: [
-      { q: "How much does a builder cost in South Africa?", a: "Builder rates typically range from R550/hr to R2,500/day depending on the scope and complexity. Get up to 3 quotes through Handyman Direct to compare." },
+      { q: "How much does a builder cost in South Africa?", a: "Builder rates vary widely depending on the scope and complexity. Get up to 3 quotes through Handyman Direct to compare fairly." },
       { q: "Do builders need to be NHBRC registered?", a: "For new residential builds, NHBRC registration is required by law. Extensions and alterations may fall outside this requirement, but always confirm with your builder." },
       { q: "Do your builders handle permits?", a: "Many of our builders can assist with municipal plan submissions and building permits. Discuss this when you receive your quotes." },
       { q: "How long does a typical extension take?", a: "A standard room extension takes 4–8 weeks depending on size and complexity. Your builder will provide a timeline with their quote." },
       { q: "How much should I pay upfront?", a: "A reputable builder should not request more than a 10–15% deposit. Tie remaining payments to agreed project milestones rather than paying in advance." },
       { q: "What insurance should my builder have?", a: "Your builder should carry public liability insurance at minimum. For larger projects, confirm they have contractors' all-risk insurance covering materials and third-party damage." },
     ],
-    priceRange: "R550–R2,500/day",
-    recommendedServices: ["assessment", "multiple-quotes", "guesstimate", "inspection", "maintenance", "instant"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
+    image: "",
   },
   {
     name: "Carpenter",
@@ -43,14 +44,14 @@ export const trades: TradeData[] = [
     blogContent: "For kitchen and bathroom fittings, the carpenter typically works alongside the plumber and tiler, so timeline coordination is important. Built-in cupboards and wardrobes are one of the most requested carpentry jobs in South Africa, and the cost varies significantly depending on whether carcasses are standard-size melamine board or custom-made solid wood. Decking projects require properly treated wood — request SANS 10005-compliant timber to ensure it's appropriate for outdoor use.",
     services: ["Custom cabinetry", "Kitchen fittings", "Door & window installation", "Built-in cupboards", "Wooden decking", "Furniture repairs", "Skirting & architrave", "Roof trusses & fascia boards"],
     faqs: [
-      { q: "How much do carpenters charge?", a: "Carpenter rates range from R450–R1,500/day depending on the complexity. Custom work typically costs more than standard installations." },
+      { q: "How much do carpenters charge?", a: "Carpenter rates depend on the complexity of the job. Custom work typically costs more than standard installations. Get quotes through Handyman Direct to compare." },
       { q: "Can I supply my own materials?", a: "Yes, most carpenters are happy for you to supply materials. Discuss this upfront to get an accurate labour-only quote." },
       { q: "How long does a kitchen fitting take?", a: "A standard kitchen fitting takes 3–7 days. Custom kitchens may take longer depending on design complexity." },
       { q: "What wood is best for outdoor decking?", a: "Balau and kiaat are popular hardwoods for outdoor decking in South Africa due to their durability. Pine can also be used if properly treated with preservative." },
       { q: "Do carpenters supply melamine board for built-ins?", a: "Most carpenters can source melamine board at trade prices. Standard colours are stock items; custom colours or finishes may need to be ordered and can extend lead times." },
     ],
-    priceRange: "R450–R1,500/day",
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Electrician",
@@ -63,14 +64,14 @@ export const trades: TradeData[] = [
     services: ["Electrical fault-finding", "DB board upgrades", "Rewiring", "Solar & inverter installation", "Compliance certificates (CoC)", "Lighting installations", "Security system wiring", "EV charger installation"],
     faqs: [
       { q: "Are your electricians certified?", a: "Yes, all electricians on our platform hold valid wireman's licences and can issue Certificates of Compliance (CoC)." },
-      { q: "How much does an electrician cost?", a: "Electrician call-out fees start at R350, with hourly rates from R450–R750/hr depending on the job complexity." },
+      { q: "How much does an electrician cost?", a: "Electrician rates vary by job complexity. Call-out fees and hourly rates differ between contractors — get quotes to compare." },
       { q: "Can you install solar panels?", a: "Yes, several of our electricians specialise in solar installations including panels, inverters, and battery systems." },
       { q: "What is a Certificate of Compliance (CoC)?", a: "A CoC is a legal document confirming that all electrical work on a property meets the SANS 10142 standard. It's required by law when selling a property." },
       { q: "How often should a DB board be inspected?", a: "It's recommended to have your DB board inspected every 5 years, or whenever you notice tripping breakers, burning smells, or flickering lights." },
       { q: "Do I need a CoC for small electrical jobs?", a: "Technically yes — any new electrical work requires a CoC. In practice, minor repairs like replacing a light switch may not always require one, but a full rewire or DB upgrade always does." },
     ],
-    priceRange: "R350–R750/hr",
-    recommendedServices: ["instant", "multiple-quotes", "assessment", "maintenance", "guesstimate", "inspection"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Handyman",
@@ -83,13 +84,13 @@ export const trades: TradeData[] = [
     services: ["General repairs", "Shelving & mounting", "Furniture assembly", "Minor plumbing fixes", "Gutter cleaning", "Lock replacements", "Painting touch-ups", "Tile & grout repairs"],
     faqs: [
       { q: "What can a handyman do?", a: "Handymen handle general repairs, installations, and maintenance tasks. For specialised work like electrical wiring or major plumbing, we recommend a certified tradesman." },
-      { q: "How much does a handyman charge?", a: "Handyman rates start from R99 for small jobs, R350 for call-outs, and R550/hr for standard work." },
+      { q: "How much does a handyman charge?", a: "Handyman rates vary by job size and location. Use our platform to compare quotes from verified handymen near you." },
       { q: "Can I book a handyman for a few hours?", a: "Yes! Use our Instant Booking option for prepaid hourly service — a vetted handyman dispatched to you fast." },
       { q: "What's the difference between a handyman and a specialist trade?", a: "A handyman handles general, non-licensed tasks. Electricians and plumbers require professional certification for their work. When in doubt, we'll help direct you to the right professional." },
       { q: "Do handymen carry their own tools?", a: "Yes, our handymen arrive fully equipped with standard hand and power tools. For unusual or specialised equipment, mention it in your job description so they can prepare." },
     ],
-    priceRange: "R99–R550/hr",
-    recommendedServices: ["instant", "multiple-quotes", "guesstimate", "maintenance", "assessment", "inspection"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "maintenance", "assessment", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Painter",
@@ -101,14 +102,14 @@ export const trades: TradeData[] = [
     blogContent: "Exterior painting in South Africa requires products suited to the climate. In coastal areas, elastomeric or waterproof paints are essential to combat humidity and salt air. On the Highveld, UV-resistant exterior paints hold up better against intense sunlight. Roof painting with reflective coatings has become popular as it can reduce interior temperatures by several degrees. For interior work, ask your painter about VOC-free or low-odour paints if you or family members are sensitive to fumes.",
     services: ["Interior painting", "Exterior painting", "Waterproofing", "Specialty finishes", "Wallpaper installation", "Roof painting", "Epoxy floor coatings", "Feature walls & murals"],
     faqs: [
-      { q: "How much does painting cost per room?", a: "Interior painting typically costs R1,500–R4,000 per room depending on size, prep work needed, and paint quality." },
+      { q: "How much does painting cost per room?", a: "Interior painting costs vary depending on room size, prep work needed, and paint quality. Get quotes from multiple painters to compare." },
       { q: "Do painters supply paint?", a: "Most painters can supply paint at trade prices, or you can supply your own. Discuss your preference when requesting quotes." },
       { q: "How long does exterior painting take?", a: "A standard house exterior takes 3–7 days depending on size, condition, and weather." },
       { q: "What paint brands do South African painters recommend?", a: "Plascon, Dulux, and Prominent are the most widely used brands. Your painter can advise on the best product for your specific surface and conditions." },
       { q: "How often should I repaint the exterior of my house?", a: "In most South African climates, exterior paint lasts 5–8 years. Coastal properties may need repainting every 3–5 years due to salt and humidity." },
     ],
-    priceRange: "R1,500–R4,000/room",
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Paver",
@@ -120,14 +121,14 @@ export const trades: TradeData[] = [
     blogContent: "Before your paver begins, the existing surface needs to be evaluated. Old concrete or paving may need to be broken up and removed — ask whether this is included in the quote. Drainage is critical: poorly graded paving leads to water pooling against your house or flooding your garage. For driveways, specify the load-bearing requirements if you have heavy vehicles. Pool surrounds require non-slip, frost-resistant pavers, and the contractor needs to work carefully around pool plumbing and waterproofing.",
     services: ["Driveway paving", "Patio installation", "Garden pathways", "Pool surrounds", "Paving repairs", "Decorative borders", "Concrete resurfacing", "Cobblestone installation"],
     faqs: [
-      { q: "How much does paving cost per square metre?", a: "Paving typically costs R250–R600/m² including materials and labour, depending on the paver type and pattern." },
+      { q: "How much does paving cost per square metre?", a: "Paving costs vary by paver type and pattern. Get multiple quotes through Handyman Direct so you can compare accurately." },
       { q: "How long does a driveway take?", a: "A standard driveway takes 3–5 days depending on size, prep work, and drainage requirements." },
       { q: "What type of pavers do you recommend?", a: "Your paver will recommend the best option based on your needs — clay, concrete, or natural stone each have advantages." },
       { q: "Do I need to remove my old paving first?", a: "In some cases, new pavers can be laid over existing concrete, but usually the old surface must be removed. Your paver will assess and include removal costs in the quote if needed." },
       { q: "How do I maintain paving after installation?", a: "Re-sand joints every 2–3 years, apply a paving sealant to resist staining, and remove moss and weeds promptly. Avoid using high-pressure water directly on joints." },
     ],
-    priceRange: "R250–R600/m²",
-    recommendedServices: ["assessment", "multiple-quotes", "guesstimate", "inspection", "maintenance", "instant"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
+    image: "",
   },
   {
     name: "Plasterer",
@@ -139,14 +140,14 @@ export const trades: TradeData[] = [
     blogContent: "Before plastering, the substrate must be correctly prepared — brick or block walls should be wetted down to prevent the plaster from drying too quickly. New plaster must be protected from direct sunlight and wind for the first few days. Do not paint over plaster until it has fully cured, which typically takes 4–6 weeks depending on thickness and climate. For damp issues, address the source before replastering — no paint or plaster will fix rising damp permanently without first fixing the waterproofing.",
     services: ["Wall plastering", "Skim coating", "Cornice installation", "Ceiling repairs", "Cove installation", "Textured finishes", "Damp proofing", "Crack repairs"],
     faqs: [
-      { q: "How much does plastering cost?", a: "Plastering costs R80–R180/m² depending on the type of finish and condition of the walls." },
+      { q: "How much does plastering cost?", a: "Plastering costs vary by finish type and wall condition. Get quotes from multiple plasterers to find the best price for your project." },
       { q: "What's the difference between plastering and skimming?", a: "Plastering applies a thick coat to bare brick or block. Skimming is a thin finish coat over existing plaster to smooth imperfections." },
       { q: "How long does plaster take to dry?", a: "Plaster typically takes 5–7 days to dry sufficiently before painting, but full cure takes 4–6 weeks depending on thickness and climate." },
       { q: "Can you plaster over existing paint?", a: "It's not recommended. Paint must be stripped back to the base, or a bonding agent applied. Plastering over paint usually leads to adhesion failure." },
       { q: "What causes plaster to crack?", a: "Common causes include insufficient curing time, movement in the building structure, poor mix ratios, or plastering over a dusty or painted surface without proper prep." },
     ],
-    priceRange: "R80–R180/m²",
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Plumber",
@@ -158,15 +159,15 @@ export const trades: TradeData[] = [
     blogContent: "Geyser replacement is one of the most common plumbing jobs in South Africa. Geysers typically last 8–12 years, and replacing a failed geyser promptly is essential to avoid water damage. When replacing a geyser, ask about heat pumps or solar geysers — though more expensive upfront, they can reduce electricity costs significantly. For leak detection, modern technology such as acoustic leak detectors and thermal cameras can identify underground leaks without invasive digging. Always fix small leaks promptly; a single dripping tap can waste thousands of litres per month.",
     services: ["Geyser installation & repair", "Leak detection & repair", "Drain unblocking", "Bathroom installations", "Water pressure systems", "Solar geyser installation", "Pipe repairs & replacements", "Water meter installation"],
     faqs: [
-      { q: "How much does a plumber cost?", a: "Plumber call-outs start at R350, with hourly rates from R450–R700. Geyser replacements typically cost R6,000–R12,000 installed." },
+      { q: "How much does a plumber cost?", a: "Plumber rates vary by job type and urgency. Get quotes through Handyman Direct to compare fairly." },
       { q: "Do you offer emergency plumbing?", a: "Yes, many of our plumbers offer emergency call-outs for burst pipes, flooding, and other urgent issues." },
       { q: "Can you install a solar geyser?", a: "Yes, several of our plumbers specialise in solar geyser installations and can advise on the best system for your home." },
       { q: "What should I do if a pipe bursts?", a: "Turn off the main water supply immediately, then call a plumber. Locate your main stopcock before an emergency so you know where to go." },
       { q: "How do I know if my drain is blocked?", a: "Signs include slow drainage, gurgling sounds, bad smells from drains, or water backing up into other fixtures. Call a plumber before the blockage becomes a full stoppage." },
       { q: "Do I need a PIRB-registered plumber?", a: "For new installations and compliance certificates, yes. All plumbers on our platform are registered and qualified." },
     ],
-    priceRange: "R350–R700/hr",
-    recommendedServices: ["instant", "multiple-quotes", "assessment", "maintenance", "guesstimate", "inspection"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Renovator",
@@ -178,14 +179,14 @@ export const trades: TradeData[] = [
     blogContent: "The kitchen and bathroom are the two highest-impact renovations for property value. Kitchen renovations involve multiple trades — electrician, plumber, tiler, carpenter, and painter — all of which must be carefully coordinated. A professional renovator manages this coordination on your behalf. For whole-house renovations, break the project into phases to remain in the property if needed, or plan temporary accommodation. Always build a 15–20% contingency into your budget for the unexpected discoveries that invariably arise in older buildings.",
     services: ["Kitchen renovations", "Bathroom renovations", "Full house renovations", "Open-plan conversions", "Garage conversions", "Property upgrades", "Interior design & planning", "Extension & addition projects"],
     faqs: [
-      { q: "How much does a kitchen renovation cost?", a: "Kitchen renovations typically range from R30,000–R150,000+ depending on size, finishes, and appliances." },
+      { q: "How much does a kitchen renovation cost?", a: "Kitchen renovation costs vary greatly depending on size, finishes, and appliances. Get a detailed site assessment and itemised quote before committing." },
       { q: "How long does a renovation take?", a: "A bathroom renovation takes 2–4 weeks, a kitchen 3–6 weeks, and a full house renovation 2–4 months." },
       { q: "Do renovators handle all trades?", a: "Yes, our renovators coordinate all trades (plumbing, electrical, tiling, etc.) so you have a single point of contact." },
       { q: "Should I move out during a renovation?", a: "For major renovations affecting key rooms like bathrooms and the kitchen, moving out or making arrangements is strongly recommended for safety and efficiency." },
       { q: "How do I avoid renovation budget overruns?", a: "Get itemised quotes, agree on a fixed scope before work starts, and include a 15–20% contingency. Any changes to scope should be agreed in writing before proceeding." },
     ],
-    priceRange: "R30,000–R150,000+",
-    recommendedServices: ["assessment", "multiple-quotes", "guesstimate", "inspection", "maintenance", "instant"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
+    image: "",
   },
   {
     name: "Roofer",
@@ -197,14 +198,14 @@ export const trades: TradeData[] = [
     blogContent: "The most common roofing materials in South Africa are concrete and clay tiles, IBR (inverted box rib) sheeting, corrugated iron, and flat roof systems with bitumen or liquid waterproofing membranes. Each material has different maintenance requirements and lifespans. Tile roofs can last 50+ years with proper maintenance; IBR sheeting typically lasts 20–30 years before rust becomes an issue. For leak repairs, the source of a leak is often not directly above where water appears inside — a good roofer will trace the flow path before attempting a repair. Waterproofing systems should carry a manufacturer-backed warranty; always ask for documentation.",
     services: ["Roof leak repairs", "Waterproofing", "Re-roofing", "New roof installations", "Gutter installation & repair", "Roof inspections", "Fascia & barge board replacement", "Thatch roof maintenance"],
     faqs: [
-      { q: "How much does a roof repair cost?", a: "Minor roof repairs start from R500. Full waterproofing costs R80–R200/m². Re-roofing depends on size and material." },
+      { q: "How much does a roof repair cost?", a: "Roof repair costs depend on the extent of damage and the roofing material. Get quotes from multiple roofers to compare." },
       { q: "How do I know if my roof needs replacing?", a: "Signs include persistent leaks, sagging, cracked tiles, rust on sheeting, or a roof over 30 years old. Book an inspection to assess." },
       { q: "Do you work with all roof types?", a: "Yes — our roofers handle tiles, IBR sheeting, corrugated iron, flat roofs, and thatch." },
       { q: "How long does a full re-roof take?", a: "A standard residential re-roof takes 5–10 days depending on the roof area and material chosen." },
       { q: "Can roof waterproofing be done in winter?", a: "Most waterproofing systems require dry conditions to apply. In winter rainfall areas, timing matters. Your roofer will advise on the best time to proceed." },
     ],
-    priceRange: "R500–R200/m²",
-    recommendedServices: ["assessment", "inspection", "multiple-quotes", "guesstimate", "maintenance", "instant"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
+    image: "",
   },
   {
     name: "Tiler",
@@ -216,14 +217,14 @@ export const trades: TradeData[] = [
     blogContent: "For wet areas like bathrooms and showers, waterproofing the substrate before tiling is essential. SANS 10400 requires waterproofing in wet areas, and skipping this step can lead to water damage behind walls that only becomes apparent years later. Large-format tiles (600×600 and above) require a flat, well-prepared substrate and an experienced tiler to avoid lippage. For heated floors, ensure your adhesive is compatible with the underfloor heating system. When buying tiles, purchase 10% extra to allow for cuts and future repairs.",
     services: ["Bathroom tiling", "Kitchen backsplashes", "Floor tiling", "Outdoor tiling", "Mosaic & feature walls", "Tile repairs", "Waterproofing & tiling", "Large format tiles"],
     faqs: [
-      { q: "How much does tiling cost per square metre?", a: "Tiling labour costs R180–R400/m² depending on tile size, pattern, and complexity. Materials are additional." },
+      { q: "How much does tiling cost per square metre?", a: "Tiling costs vary by tile size, pattern complexity, and surface prep needed. Get quotes from multiple tilers to find the best rate." },
       { q: "Should I buy my own tiles?", a: "You can supply your own tiles or ask your tiler to source them. Buy 10% extra to account for cuts and breakage." },
       { q: "How long does bathroom tiling take?", a: "A standard bathroom takes 3–5 days including waterproofing, preparation, tiling, and grouting." },
       { q: "Do I need waterproofing before tiling a bathroom?", a: "Yes — SANS 10400 requires waterproofing in wet areas. A tiler who skips this step is cutting corners that will cost you more in the long run." },
       { q: "Can large-format tiles be used in small bathrooms?", a: "Yes, and they can actually make a small bathroom feel larger. They require a very flat substrate and an experienced tiler to install without lippage." },
     ],
-    priceRange: "R180–R400/m²",
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
   {
     name: "Welder",
@@ -235,14 +236,14 @@ export const trades: TradeData[] = [
     blogContent: "The two most common materials for security metalwork in South Africa are mild steel and aluminium. Mild steel is stronger and generally cheaper, but requires regular maintenance (painting or powder coating) to prevent rust. Aluminium is rust-resistant and low-maintenance but costs more. For balustrades and handrails, SANS 10400 specifies minimum height and load-bearing requirements — a reputable welder will design to these standards. Automated gate systems are increasingly popular; ensure your welder has experience with the specific motor brand to guarantee smooth installation and future maintenance.",
     services: ["Security gates", "Burglar bars", "Balustrades & handrails", "Carports & shade ports", "Custom fabrication", "Welding repairs", "Automated gate installation", "Steel staircase fabrication"],
     faqs: [
-      { q: "How much does a security gate cost?", a: "Security gates range from R2,500–R8,000+ depending on size, design, and material (mild steel or aluminium)." },
+      { q: "How much does a security gate cost?", a: "Security gate prices vary by size, design, and material. Get quotes from multiple welders to compare." },
       { q: "Can welders work on-site?", a: "Yes, most welders offer on-site welding for installations and repairs. Some custom work may require off-site fabrication." },
       { q: "Do you install automated gates?", a: "Yes, several of our welders install and maintain automated gate motors and systems." },
       { q: "Do burglar bars need emergency releases?", a: "Yes — SABS and building regulations require emergency release mechanisms on burglar bars fitted to habitable rooms. Never install fixed bars without them." },
       { q: "What's the maintenance required for steel gates?", a: "Mild steel gates should be repainted or re-powder-coated every 3–5 years to prevent rust. Aluminium gates require little to no maintenance." },
     ],
-    priceRange: "R2,500–R8,000+",
-    recommendedServices: ["multiple-quotes", "guesstimate", "instant", "assessment", "maintenance", "inspection"],
+    recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
+    image: "",
   },
 ];
 

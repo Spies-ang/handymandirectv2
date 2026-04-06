@@ -62,7 +62,6 @@ const AreaPage = () => {
                 className="p-4 rounded-xl border bg-card hover:border-primary hover:shadow-md transition-all text-center"
               >
                 <span className="font-medium text-foreground text-sm">{trade.name}</span>
-                <span className="block text-xs text-muted-foreground mt-1">{trade.priceRange}</span>
               </Link>
             ))}
           </div>
