@@ -35,7 +35,7 @@ const TradePage = () => {
       <Header />
       <main className="flex-1">
 
-        {/* Hero */}
+        {/* Hero — trust badge, h1, heroDescription only */}
         <section className="bg-secondary/50 py-16">
           <div className="container max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 bg-background rounded-full px-4 py-1.5 mb-4 shadow-sm border">
@@ -45,16 +45,11 @@ const TradePage = () => {
             <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground leading-tight mb-4">
               Find a Trusted <span className="text-primary">{trade.name}</span> Near You
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">{trade.heroDescription}</p>
-            <Link to={`/book?trade=${trade.slug}`}>
-              <Button size="lg" className="gap-2 text-base px-8">
-                Post a {trade.name} Job <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+            <p className="text-lg text-muted-foreground">{trade.heroDescription}</p>
           </div>
         </section>
 
-        {/* Green CTA banner */}
+        {/* Green CTA banner — sole top CTA */}
         <section className="bg-green-50 border-l-4 border-green-600 py-8">
           <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
@@ -91,28 +86,66 @@ const TradePage = () => {
           <PremiumServices tradeSlug={trade.slug} orderOverride={trade.recommendedServices} />
         </div>
 
-        {/* Blog section */}
+        {/* Blog feed window */}
         <section className="container py-16">
-          <div className="max-w-4xl mx-auto">
-            {trade.image ? (
-              <img
-                src={trade.image}
-                alt={`${trade.name} in South Africa`}
-                className="w-full h-80 md:h-96 object-cover rounded-xl mb-8"
-              />
-            ) : (
-              <div className="w-full h-80 md:h-96 rounded-xl mb-8 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary flex items-center justify-center">
-                <span className="font-display text-5xl md:text-7xl font-extrabold text-primary/20 select-none">
-                  {trade.name}
-                </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-3">
+            Latest from the {trade.name} Blog
+          </h2>
+          <p className="text-muted-foreground text-lg text-center mb-10">Tips, guides, and industry insights</p>
+
+          <div className="max-w-4xl mx-auto rounded-2xl border bg-card shadow-sm overflow-hidden">
+            {/* Header bar */}
+            <div className="bg-secondary/50 border-b px-6 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+                <span className="text-sm font-medium text-foreground">Recent posts</span>
               </div>
-            )}
-            <h2 className="font-display text-3xl font-bold text-foreground text-center mb-6">
-              About {trade.name} Work in South Africa
-            </h2>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-lg leading-relaxed text-muted-foreground mb-6">{trade.blogIntro}</p>
-              <p className="text-base leading-relaxed text-muted-foreground">{trade.blogContent}</p>
+              <Link to="/blog" className="text-sm font-medium text-primary hover:underline">View all</Link>
+            </div>
+
+            {/* Scrollable post list */}
+            <div className="max-h-[500px] overflow-y-auto divide-y">
+
+              {/* Post 1 — blogIntro */}
+              <div className="p-6">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Featured article</p>
+                <h3 className="font-display font-bold text-xl mb-3">
+                  Understanding {trade.name} Work in South Africa
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{trade.blogIntro}</p>
+                <span className="text-sm font-medium text-primary mt-4 inline-block">Read more →</span>
+              </div>
+
+              {/* Post 2 — blogContent */}
+              <div className="p-6">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Posted recently</p>
+                <h3 className="font-display font-bold text-xl mb-3">
+                  What to Know Before Hiring a {trade.name}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{trade.blogContent}</p>
+                <span className="text-sm font-medium text-primary mt-4 inline-block">Read more →</span>
+              </div>
+
+              {/* Placeholder posts */}
+              <div className="p-6 opacity-50">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Coming soon</p>
+                <h3 className="font-display font-bold text-xl">
+                  5 Common {trade.name} Mistakes to Avoid
+                </h3>
+              </div>
+              <div className="p-6 opacity-50">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Coming soon</p>
+                <h3 className="font-display font-bold text-xl">
+                  How to Vet Your {trade.name} Before Hiring
+                </h3>
+              </div>
+              <div className="p-6 opacity-50">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Coming soon</p>
+                <h3 className="font-display font-bold text-xl">
+                  Seasonal {trade.name} Maintenance Guide
+                </h3>
+              </div>
+
             </div>
           </div>
         </section>
@@ -164,20 +197,6 @@ const TradePage = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
-        </section>
-
-        {/* Bottom CTA */}
-        <section className="bg-primary py-12">
-          <div className="container text-center">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-              Ready to hire a {trade.name.toLowerCase()}?
-            </h2>
-            <Link to={`/book?trade=${trade.slug}`}>
-              <Button size="lg" variant="secondary" className="gap-2 text-base px-8">
-                Post a Job Now <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
           </div>
         </section>
 
