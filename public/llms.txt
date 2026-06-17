@@ -1,0 +1,37 @@
+# Handyman Direct
+
+> South African marketplace that connects homeowners with verified tradespeople — plumbers, electricians, builders, painters, roofers and more. Homeowners post a job for free; contractors pay credits to quote.
+
+## Pages
+
+- [Home](/): Overview of the service, how it works, and featured trades.
+- [Post a job](/book): Job posting form for homeowners.
+- [For contractors](/contractors): Information and signup for tradespeople.
+- [FAQ](/faq): Common questions about hiring, payments, and verification.
+
+## Trades
+
+- [Plumber](/trade/plumber)
+- [Electrician](/trade/electrician)
+- [Builder](/trade/builder)
+- [Carpenter](/trade/carpenter)
+- [Painter](/trade/painter)
+- [Roofer](/trade/roofer)
+- [Tiler](/trade/tiler)
+- [Plasterer](/trade/plasterer)
+- [Welder](/trade/welder)
+- [Handyman](/trade/handyman)
+- [Renovator](/trade/renovator)
+- [Paver](/trade/paver)
+
+## Service areas
+
+- [Pretoria](/area/pretoria)
+- [Cape Town](/area/cape-town)
+- [Bloemfontein](/area/bloemfontein)
+
+## Optional
+
+- [Login](/login)
+- [Sign up](/signup)
+- [Contractor signup](/contractor/signup)

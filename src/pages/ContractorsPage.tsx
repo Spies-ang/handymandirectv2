@@ -145,9 +145,9 @@ const ContractorsPage = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>Trade *</Label>
+                    <Label htmlFor="trade-select">Trade *</Label>
                     <Select required value={form.trade} onValueChange={(v) => update("trade", v)}>
-                      <SelectTrigger><SelectValue placeholder="Select trade" /></SelectTrigger>
+                      <SelectTrigger id="trade-select" aria-label="Trade"><SelectValue placeholder="Select trade" /></SelectTrigger>
                       <SelectContent>
                         {trades.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
                       </SelectContent>
