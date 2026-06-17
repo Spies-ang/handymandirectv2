@@ -95,10 +95,35 @@ const BookingPage = () => {
     }
   }, [user]);
 
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+  const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setPhotoFiles((prev) => [...prev, ...Array.from(e.target.files!)].slice(0, 5));
+    if (!e.target.files) return;
+    const incoming = Array.from(e.target.files);
+    const valid: File[] = [];
+    for (const file of incoming) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        toast({
+          title: "Unsupported file type",
+          description: `${file.name} must be a JPG, PNG, WEBP, or GIF image.`,
+          variant: "destructive",
+        });
+        continue;
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        toast({
+          title: "File too large",
+          description: `${file.name} exceeds the 10 MB limit.`,
+          variant: "destructive",
+        });
+        continue;
+      }
+      valid.push(file);
     }
+    setPhotoFiles((prev) => [...prev, ...valid].slice(0, 5));
+    // Reset input so picking the same file again still triggers onChange
+    e.target.value = "";
   };
 
   const removePhoto = (index: number) => {
@@ -109,17 +134,22 @@ const BookingPage = () => {
     if (!photoFiles.length || !user) return [];
     const urls: string[] = [];
     for (const file of photoFiles) {
+      // Re-validate server-side-bound checks before upload
+      if (!ALLOWED_TYPES.includes(file.type) || file.size > MAX_FILE_SIZE) continue;
       const path = `${user.id}/${Date.now()}-${file.name}`;
       const { error } = await supabase.storage
         .from("job-photos")
-        .upload(path, file, { upsert: false });
+        .upload(path, file, { upsert: false, contentType: file.type });
       if (!error) {
-        const { data } = supabase.storage.from("job-photos").getPublicUrl(path);
-        urls.push(data.publicUrl);
+        const { data: signed } = await supabase.storage
+          .from("job-photos")
+          .createSignedUrl(path, 60 * 60 * 24 * 365);
+        if (signed?.signedUrl) urls.push(signed.signedUrl);
       }
     }
     return urls;
   };
+
 
   const buildDescription = (): string => {
     const parts: string[] = [];
