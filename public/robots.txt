@@ -12,3 +12,15 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /contractor/dashboard
+Disallow: /contractor/available
+Disallow: /contractor/engagements
+Disallow: /contractor/requests
+Disallow: /contractor/archives
+Disallow: /contractor/invoices
+Disallow: /contractor/profile
+Disallow: /contractor/cart
+
+Sitemap: https://handymandirectv2.lovable.app/sitemap.xml

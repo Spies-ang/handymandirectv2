@@ -113,7 +113,7 @@ const TradePage = () => {
                   Understanding {trade.name} Work in South Africa
                 </h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{trade.blogIntro}</p>
-                <span className="text-sm font-medium text-primary mt-4 inline-block">Read more →</span>
+                <span className="text-sm font-medium text-primary mt-4 inline-block">Read the full article on {trade.name} work in South Africa →</span>
               </div>
 
               {/* Post 2 — blogContent */}
@@ -123,7 +123,7 @@ const TradePage = () => {
                   What to Know Before Hiring a {trade.name}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{trade.blogContent}</p>
-                <span className="text-sm font-medium text-primary mt-4 inline-block">Read more →</span>
+                <span className="text-sm font-medium text-primary mt-4 inline-block">Read the full guide to hiring a {trade.name} →</span>
               </div>
 
               {/* Placeholder posts */}
