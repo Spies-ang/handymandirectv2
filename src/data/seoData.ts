@@ -262,10 +262,10 @@ export const cities: CityData[] = [
     suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana", "Faerie Glen", "Lynnwood", "Moot", "Sunnyside"],
   },
   {
-    name: "Bloemfontein",
-    slug: "bloemfontein",
-    description: "Find trusted tradesmen in Bloemfontein and surrounding suburbs. Handyman Direct connects you with verified contractors for any home improvement or repair project.",
-    suburbs: ["Westdene", "Universitas", "Langenhoven Park", "Bayswater", "Willows", "Dan Pienaar", "Pellissier", "Fichardtpark", "Brandwag", "Hospitaalpark", "Noordhoek", "Heuwelsig"],
+    name: "Durban",
+    slug: "durban",
+    description: "Find trusted tradesmen in Durban and surrounding suburbs. Handyman Direct connects you with verified contractors for any home improvement or repair project.",
+    suburbs: ["Umhlanga", "Durban North", "Durban South", "Pinetown", "Hillcrest", "Ballito", "Kloof", "Westville", "Amanzimtoti", "Berea", "Morningside", "La Lucia", "Musgrave", "Glenwood"],
   },
   {
     name: "Cape Town / Stellenbosch",

@@ -8,9 +8,9 @@ const areas = [
     suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana"],
   },
   {
-    city: "Bloemfontein",
-    slug: "bloemfontein",
-    suburbs: ["Westdene", "Universitas", "Langenhoven Park", "Bayswater", "Willows", "Dan Pienaar", "Pellissier", "Fichardtpark"],
+    city: "Durban",
+    slug: "durban",
+    suburbs: ["Umhlanga", "Durban North", "Durban South", "Pinetown", "Hillcrest", "Ballito", "Kloof", "Westville"],
   },
   {
     city: "Cape Town / Stellenbosch",

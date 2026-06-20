@@ -35,7 +35,7 @@ const GENERAL_FAQS = [
   {
     question: "What areas do you cover?",
     answer:
-      "We currently cover all major South African cities and surrounding areas including Cape Town, Johannesburg, Pretoria, Durban, Port Elizabeth, Bloemfontein, and East London. We are actively expanding our contractor network to more towns and regions.",
+      "We currently cover all major South African cities and surrounding areas including Cape Town, Johannesburg, Pretoria, Durban, Port Elizabeth, and East London. We are actively expanding our contractor network to more towns and regions.",
   },
   {
     question: "How do I pay a contractor?",

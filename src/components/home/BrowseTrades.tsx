@@ -20,7 +20,7 @@ const BrowseTrades = () => (
   <section className="container py-16">
     <div className="text-center mb-10">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
-        Browse Our Trades
+        Browse All Trades and Services
       </h2>
       <p className="text-muted-foreground text-lg">
         Learn more about each trade and see what's possible

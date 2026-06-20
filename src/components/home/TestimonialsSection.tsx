@@ -1,68 +1,181 @@
-import { Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
-const reviews = [
-  { name: "Sarah M.", text: "Absolutely fantastic service! The plumber arrived on time and fixed our geyser in under an hour. Will definitely use again.", rating: 5 },
-  { name: "Johan V.", text: "Got three quotes within a day. Very impressed with how easy the process was. Hired a great painter.", rating: 5 },
-  { name: "Thandi K.", text: "The electrician was professional, neat, and very reasonably priced. Highly recommend!", rating: 5 },
-  { name: "Mike R.", text: "Used Handyman Direct for our office renovation. The builder they connected us with was outstanding.", rating: 5 },
-  { name: "Lerato P.", text: "Quick response, fair pricing, and quality work. The handyman fixed multiple things in one visit.", rating: 5 },
-  { name: "David S.", text: "Best service I've used for home repairs. The tiler did an incredible job on our bathroom.", rating: 5 },
-  { name: "Anele N.", text: "Very happy with the carpenter who built our custom shelving. Professional from start to finish.", rating: 5 },
-  { name: "Pieter J.", text: "The roofer was excellent — fixed a tricky leak that two other companies couldn't sort out.", rating: 4 },
-  { name: "Nomsa T.", text: "Friendly, reliable, and trustworthy. The plasterer transformed our living room walls.", rating: 5 },
-  { name: "Chris B.", text: "Outstanding welder. Our security gate looks amazing and was done ahead of schedule.", rating: 5 },
-  { name: "Fatima A.", text: "I was nervous about finding a good contractor. Handyman Direct made it so easy and stress-free.", rating: 5 },
-  { name: "Sipho M.", text: "Great experience with the paver. Our driveway looks brand new. Fair price too.", rating: 5 },
-  { name: "Linda W.", text: "The renovator completely transformed our kitchen. Couldn't be happier with the result!", rating: 5 },
-  { name: "Bongani Z.", text: "Fast quotes, verified contractors, and quality results. This is how it should be done.", rating: 5 },
-  { name: "Karen F.", text: "Had an emergency plumbing issue. Within 2 hours I had a verified plumber at my door. Lifesaver!", rating: 5 },
-  { name: "Abdul H.", text: "The builder we hired through Handyman Direct built a stunning boundary wall. Top quality.", rating: 5 },
-  { name: "Grace L.", text: "Excellent communication throughout. The electrician explained everything clearly before starting.", rating: 5 },
-  { name: "Werner D.", text: "Used the site assessment service — totally worth it. Got a detailed breakdown before committing.", rating: 5 },
-  { name: "Zanele S.", text: "I've recommended Handyman Direct to all my friends. Reliable every single time.", rating: 5 },
-  { name: "Paul C.", text: "Fantastic painter. Clean work, on time, and the finish is flawless. Five stars all the way.", rating: 5 },
+// PLACEHOLDER — Vincent to replace with real review snippets
+const slides = [
+  {
+    platform: "Google",
+    rating: "4.8 / 5",
+    count: "283 reviews",
+    excerpts: [
+      "Quick response and great quality work — very impressed with the whole process.",
+      "Found a reliable plumber within hours. Will definitely use again.",
+      "Straightforward, professional, and fair pricing. Highly recommended.",
+    ],
+    badgeColor: "#4285F4",
+    logo: "G",
+    link: "https://share.google/Qg36252eHBRWcUEbL",
+  },
+  {
+    platform: "Trustpilot",
+    rating: "4.8 / 5 Excellent",
+    count: "58 reviews",
+    excerpts: [
+      "Booking was simple and the contractor arrived on time. Excellent service.",
+      "Got three quotes quickly and hired a great electrician. Very happy.",
+      "Professional platform — easy to use and contractors are well-vetted.",
+    ],
+    badgeColor: "#00B67A",
+    logo: "T",
+    link: "#",
+  },
+  {
+    platform: "Facebook",
+    rating: "100% Recommended",
+    count: "13 recommendations",
+    excerpts: [
+      "Used Handyman Direct for a full bathroom renovation. Absolutely brilliant.",
+      "The team was responsive and the contractor they connected me with was top-notch.",
+      "Would recommend to anyone looking for reliable tradesmen in South Africa.",
+    ],
+    badgeColor: "#1877F2",
+    logo: "f",
+    link: "#",
+  },
 ];
 
-const TestimonialsSection = () => (
-  <section className="bg-muted/50 py-16">
-    <div className="container">
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 mb-3">
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-star text-star" />
-            ))}
-          </div>
-          <span className="font-display font-bold text-2xl text-foreground">4.9</span>
-        </div>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">What Our Customers Say</h2>
-        <p className="text-muted-foreground text-lg">200+ verified reviews on Google</p>
-      </div>
+const TestimonialsSection = () => {
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {reviews.slice(0, 8).map((r, i) => (
-          <div key={i} className="rounded-xl border bg-card p-5">
-            <div className="flex gap-0.5 mb-2">
-              {[...Array(r.rating)].map((_, j) => (
-                <Star key={j} className="w-3.5 h-3.5 fill-star text-star" />
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goTo = (index: number) => setCurrent((index + slides.length) % slides.length);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    touchStartX.current = null;
+  };
+
+  const slide = slides[current];
+
+  return (
+    <section className="bg-muted/50 py-16">
+      <div className="container">
+        <div className="text-center mb-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">What Our Customers Say</h2>
+          <p className="text-muted-foreground text-lg">Verified reviews across multiple platforms</p>
+        </div>
+
+        <div className="relative max-w-2xl mx-auto">
+          {/* Slider track */}
+          <div className="overflow-hidden rounded-2xl">
+            <div
+              style={{
+                display: "flex",
+                transform: `translateX(-${current * 100}%)`,
+                transition: "transform 0.4s ease",
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {slides.map((s, i) => (
+                <div
+                  key={i}
+                  style={{ minWidth: "100%", flexShrink: 0 }}
+                  className="bg-card border rounded-2xl p-8"
+                >
+                  {/* Platform header */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <span
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                      style={{ backgroundColor: s.badgeColor }}
+                    >
+                      {s.logo}
+                    </span>
+                    <div>
+                      <p className="font-display font-bold text-foreground">{s.platform}</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="font-semibold" style={{ color: s.badgeColor }}>{s.rating}</span>
+                        <span>·</span>
+                        <span>{s.count}</span>
+                      </div>
+                    </div>
+                    <div className="ml-auto flex gap-0.5">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} className="w-4 h-4 fill-star text-star" />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Excerpts */}
+                  <ul className="space-y-3">
+                    {s.excerpts.map((excerpt, j) => (
+                      <li key={j} className="text-sm text-muted-foreground border-l-2 pl-3" style={{ borderColor: s.badgeColor }}>
+                        "{excerpt}"
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <a
+                    href={s.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-5 text-sm font-medium hover:underline"
+                    style={{ color: s.badgeColor }}
+                  >
+                    View all {s.platform} reviews →
+                  </a>
+                </div>
               ))}
             </div>
-            <p className="text-sm text-muted-foreground mb-3 line-clamp-3">"{r.text}"</p>
-            <span className="text-sm font-medium text-foreground">{r.name}</span>
           </div>
-        ))}
-      </div>
 
-      <div className="text-center mt-8">
-        <a href="https://share.google/Qg36252eHBRWcUEbL" target="_blank" rel="noopener noreferrer">
-          <Button variant="outline" className="gap-2">
-            View All Reviews on Google <Star className="w-4 h-4 fill-star text-star" />
-          </Button>
-        </a>
+          {/* Prev / Next buttons */}
+          <button
+            onClick={() => goTo(current - 1)}
+            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => goTo(current + 1)}
+            className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${
+                i === current ? "bg-primary scale-125" : "bg-muted-foreground/30"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default TestimonialsSection;

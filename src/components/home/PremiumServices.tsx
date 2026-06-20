@@ -19,20 +19,12 @@ const services: {
   serviceSlug: string;
 }[] = [
   {
-    icon: Users,
-    title: "Multiple Contractor Quotes",
-    desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
-    cta: "Get Quotes",
-    tier: "beginner",
-    serviceSlug: "multiple-quotes",
-  },
-  {
-    icon: Calculator,
-    title: "Guesstimate Quotation",
-    desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
-    cta: "Get Estimate",
-    tier: "beginner",
-    serviceSlug: "guesstimate",
+    icon: Zap,
+    title: "Instant Booking",
+    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
+    cta: "Book Now",
+    tier: "master",
+    serviceSlug: "instant",
   },
   {
     icon: ClipboardCheck,
@@ -59,12 +51,20 @@ const services: {
     serviceSlug: "maintenance",
   },
   {
-    icon: Zap,
-    title: "Instant Booking",
-    desc: "Prepaid hourly service — a vetted contractor dispatched to you fast.",
-    cta: "Book Now",
-    tier: "master",
-    serviceSlug: "instant",
+    icon: Users,
+    title: "Multiple Contractor Quotes",
+    desc: "Receive and compare quotes from up to 3 verified contractors for your job.",
+    cta: "Get Quotes",
+    tier: "beginner",
+    serviceSlug: "multiple-quotes",
+  },
+  {
+    icon: Calculator,
+    title: "Guesstimate Quotation",
+    desc: "Not sure what it'll cost? Get a rough estimate before committing to a full quote.",
+    cta: "Get Estimate",
+    tier: "beginner",
+    serviceSlug: "guesstimate",
   },
 ];
 
