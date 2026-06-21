@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 type Tier = "beginner" | "intermediate" | "master";
 
-const tierConfig: Record<Tier, { color: string; label: string }> = {
-  beginner:     { color: "#27AE60", label: "Beginner" },
-  intermediate: { color: "#F39C12", label: "Intermediate" },
-  master:       { color: "#2B7BCC", label: "Master" },
+const tierConfig: Record<Tier, { color: string; label: string; sublabel: string }> = {
+  beginner:     { color: "#27AE60", label: "Beginner",     sublabel: "No Hurry" },
+  intermediate: { color: "#F39C12", label: "Intermediate", sublabel: "Next Day" },
+  master:       { color: "#2B7BCC", label: "Master",       sublabel: "Same Day" },
 };
 
 const services: {
@@ -47,7 +47,7 @@ const services: {
     title: "Annual Maintenance",
     desc: "Year-round home maintenance plan covering all trades.",
     cta: "Learn More",
-    tier: "intermediate",
+    tier: "master",
     serviceSlug: "maintenance",
   },
   {
@@ -68,79 +68,117 @@ const services: {
   },
 ];
 
-const legend: { tier: Tier; text: string }[] = [
-  { tier: "beginner",     text: "New to this? We'll guide you" },
-  { tier: "intermediate", text: "Know what you need? We'll connect you" },
-  { tier: "master",       text: "Ready to go? Fast-track service" },
-];
+const TIER_ORDER: Tier[] = ["beginner", "intermediate", "master"];
 
 interface PremiumServicesProps {
   tradeSlug?: string;
   orderOverride?: string[];
 }
 
-const PremiumServices = ({ tradeSlug, orderOverride }: PremiumServicesProps = {}) => {
-  const orderedServices = orderOverride
-    ? [...services].sort(
-        (a, b) =>
-          (orderOverride.indexOf(a.serviceSlug) + 1 || orderOverride.length + 1) -
-          (orderOverride.indexOf(b.serviceSlug) + 1 || orderOverride.length + 1)
-      )
-    : services;
+const ServiceCard = ({
+  s,
+  tradeSlug,
+  showSublabel,
+}: {
+  s: (typeof services)[number];
+  tradeSlug?: string;
+  showSublabel: boolean;
+}) => {
+  const Icon = s.icon;
+  const { color, label, sublabel } = tierConfig[s.tier];
+  const href = tradeSlug
+    ? `/book?tier=${s.tier}&service=${s.serviceSlug}&trade=${tradeSlug}`
+    : `/book?tier=${s.tier}&service=${s.serviceSlug}`;
+  const badgeText = showSublabel ? `${label} / ${sublabel}` : label;
   return (
-  <section className="container py-16">
-    <div className="text-center mb-8">
-      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
-      <p className="text-muted-foreground text-lg mb-6">Go beyond quotes with our premium options</p>
+    <div
+      className="rounded-xl border bg-card p-6 flex flex-col hover:shadow-md transition-shadow"
+      style={{ borderLeft: `4px solid ${color}` }}
+    >
+      <span
+        className="self-start text-xs font-semibold px-2 py-0.5 rounded-full mb-3"
+        style={{ backgroundColor: `${color}20`, color }}
+      >
+        {badgeText}
+      </span>
+      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-primary" />
+      </div>
+      <h3 className="font-display font-bold text-foreground mb-2">{s.title}</h3>
+      <p className="text-sm text-muted-foreground flex-1 mb-4">{s.desc}</p>
+      <Link to={href}>
+        <Button variant="outline" size="sm" className="w-full">{s.cta}</Button>
+      </Link>
+    </div>
+  );
+};
 
-      {/* Legend */}
-      <div className="flex flex-wrap justify-center gap-4">
-        {legend.map(({ tier, text }) => (
-          <div key={tier} className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span
-              className="inline-block w-3 h-3 rounded-full flex-shrink-0"
-              style={{ backgroundColor: tierConfig[tier].color }}
-            />
-            <span>{text}</span>
+const PremiumServices = ({ tradeSlug, orderOverride }: PremiumServicesProps = {}) => {
+  const isHomepage = tradeSlug === undefined;
+
+  // Trade pages: flat responsive grid with orderOverride, badge shows sublabel
+  if (!isHomepage) {
+    const orderedServices = orderOverride
+      ? [...services].sort(
+          (a, b) =>
+            (orderOverride.indexOf(a.serviceSlug) + 1 || orderOverride.length + 1) -
+            (orderOverride.indexOf(b.serviceSlug) + 1 || orderOverride.length + 1)
+        )
+      : services;
+    return (
+      <section className="container py-16">
+        <div className="text-center mb-8">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
+          <p className="text-muted-foreground text-lg mb-6">Go beyond quotes with our premium options</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {orderedServices.map((s, i) => (
+            <ServiceCard key={i} s={s} tradeSlug={tradeSlug} showSublabel />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Homepage: 3-column tier layout — column headers replace the legend
+  const columns = TIER_ORDER.map((tier) => ({
+    tier,
+    items: services.filter((s) => s.tier === tier),
+    ...tierConfig[tier],
+  }));
+
+  return (
+    <section className="container py-16">
+      <div className="text-center mb-8">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Premium Services</h2>
+        <p className="text-muted-foreground text-lg">Go beyond quotes with our premium options</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {columns.map(({ tier, color, label, sublabel, items }) => (
+          <div key={tier}>
+            {/* Tier column header */}
+            <div
+              className="rounded-xl px-5 py-3 mb-4 flex items-center justify-between"
+              style={{ backgroundColor: `${color}15`, border: `1.5px solid ${color}40` }}
+            >
+              <span className="font-display font-bold text-sm" style={{ color }}>
+                {label}
+              </span>
+              <span className="text-xs font-medium" style={{ color: `${color}BB` }}>
+                {sublabel}
+              </span>
+            </div>
+            {/* Cards stack within column */}
+            <div className="flex flex-col gap-4">
+              {items.map((s, i) => (
+                <ServiceCard key={i} s={s} showSublabel={false} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
-    </div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {orderedServices.map((s, i) => {
-        const Icon = s.icon;
-        const { color, label } = tierConfig[s.tier];
-        const href = tradeSlug
-          ? `/book?tier=${s.tier}&service=${s.serviceSlug}&trade=${tradeSlug}`
-          : `/book?tier=${s.tier}&service=${s.serviceSlug}`;
-        return (
-          <div
-            key={i}
-            className="rounded-xl border bg-card p-6 flex flex-col hover:shadow-md transition-shadow"
-            style={{ borderLeft: `4px solid ${color}` }}
-          >
-            {/* Tier badge */}
-            <span
-              className="self-start text-xs font-semibold px-2 py-0.5 rounded-full mb-3"
-              style={{ backgroundColor: `${color}20`, color }}
-            >
-              {label}
-            </span>
-
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-              <Icon className="w-6 h-6 text-primary" />
-            </div>
-            <h3 className="font-display font-bold text-foreground mb-2">{s.title}</h3>
-            <p className="text-sm text-muted-foreground flex-1 mb-4">{s.desc}</p>
-            <Link to={href}>
-              <Button variant="outline" size="sm" className="w-full">{s.cta}</Button>
-            </Link>
-          </div>
-        );
-      })}
-    </div>
-  </section>
+    </section>
   );
 };
 
