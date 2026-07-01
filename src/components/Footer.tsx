@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logoImg from "@/assets/logo.png";
+import { trades } from "@/data/seoData";
 
 const Footer = () => (
   <footer className="bg-foreground text-background">
