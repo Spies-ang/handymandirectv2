@@ -44,14 +44,14 @@ const ServiceAreas = () => (
       <p className="text-muted-foreground text-lg">Trusted tradesmen across South Africa</p>
     </div>
 
-    <div className="space-y-10">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
       {provinces.map(({ province, areas }) => (
         <div key={province}>
           <h3 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
             <span className="w-1.5 h-5 rounded-full bg-primary inline-block" />
             {province}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="space-y-6">
             {areas.map((area) => (
               <div key={area.slug} className="rounded-xl border bg-card p-6">
                 <div className="flex items-center gap-2 mb-4">
