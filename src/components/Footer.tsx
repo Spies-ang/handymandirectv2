@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logoImg from "@/assets/logo.png";
+import { trades } from "@/data/seoData";
 
 const Footer = () => (
   <footer className="bg-foreground text-background">
@@ -14,13 +15,15 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-display font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Services</h4>
-          <ul className="space-y-2 text-sm opacity-70">
-            <li><Link to="/trade/builder" className="hover:opacity-100 transition-opacity">Builders</Link></li>
-            <li><Link to="/trade/plumber" className="hover:opacity-100 transition-opacity">Plumbers</Link></li>
-            <li><Link to="/trade/electrician" className="hover:opacity-100 transition-opacity">Electricians</Link></li>
-            <li><Link to="/trade/painter" className="hover:opacity-100 transition-opacity">Painters</Link></li>
-            <li><Link to="/trade/roofer" className="hover:opacity-100 transition-opacity">Roofers</Link></li>
+          <h4 className="font-display font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Trades</h4>
+          <ul className="space-y-2 text-sm opacity-70 grid grid-cols-2 gap-x-4">
+            {trades.map((t) => (
+              <li key={t.slug}>
+                <Link to={`/trade/${t.slug}`} className="hover:opacity-100 transition-opacity">
+                  {t.name}s
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
