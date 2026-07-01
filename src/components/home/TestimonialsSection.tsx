@@ -80,7 +80,7 @@ const TestimonialsSection = () => {
                   {/* Excerpts */}
                   <ul className="space-y-3">
                     {s.excerpts.map((excerpt, j) => (
-                      <li key={j} className="text-sm text-muted-foreground border-l-2 pl-3" style={{ borderColor: s.badgeColor }}>
+                      <li key={j} className="text-sm text-muted-foreground border-l-2 pl-3 break-words leading-relaxed" style={{ borderColor: s.badgeColor }}>
                         "{excerpt}"
                       </li>
                     ))}
