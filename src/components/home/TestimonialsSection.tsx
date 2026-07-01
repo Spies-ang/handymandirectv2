@@ -36,12 +36,12 @@ const TestimonialsSection = () => {
           <p className="text-muted-foreground text-lg">Verified reviews across multiple platforms</p>
         </div>
 
-        <div className="relative max-w-2xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-8 md:px-12">
           {/* Slider track */}
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl w-full">
             <div
+              className="flex w-full"
               style={{
-                display: "flex",
                 transform: `translateX(-${current * 100}%)`,
                 transition: "transform 0.4s ease",
               }}
@@ -51,8 +51,8 @@ const TestimonialsSection = () => {
               {slides.map((s, i) => (
                 <div
                   key={i}
-                  style={{ minWidth: "100%", flexShrink: 0 }}
-                  className="bg-card border rounded-2xl p-8"
+                  style={{ flex: "0 0 100%" }}
+                  className="w-full min-w-0 bg-card border rounded-2xl p-6 md:p-8 break-words"
                 >
                   {/* Platform header */}
                   <div className="flex items-center gap-3 mb-5">
@@ -80,7 +80,7 @@ const TestimonialsSection = () => {
                   {/* Excerpts */}
                   <ul className="space-y-3">
                     {s.excerpts.map((excerpt, j) => (
-                      <li key={j} className="text-sm text-muted-foreground border-l-2 pl-3" style={{ borderColor: s.badgeColor }}>
+                      <li key={j} className="text-sm text-muted-foreground border-l-2 pl-3 break-words leading-relaxed" style={{ borderColor: s.badgeColor }}>
                         "{excerpt}"
                       </li>
                     ))}
@@ -104,14 +104,14 @@ const TestimonialsSection = () => {
           {/* Prev / Next buttons */}
           <button
             onClick={() => goTo(current - 1)}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+            className="absolute -left-2 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors z-10"
             aria-label="Previous"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => goTo(current + 1)}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+            className="absolute -right-2 md:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors z-10"
             aria-label="Next"
           >
             <ChevronRight className="w-5 h-5" />
