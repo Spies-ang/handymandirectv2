@@ -1,48 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-
-// PLACEHOLDER — Vincent to replace with real review snippets
-const slides = [
-  {
-    platform: "Google",
-    rating: "4.8 / 5",
-    count: "283 reviews",
-    excerpts: [
-      "Quick response and great quality work — very impressed with the whole process.",
-      "Found a reliable plumber within hours. Will definitely use again.",
-      "Straightforward, professional, and fair pricing. Highly recommended.",
-    ],
-    badgeColor: "#4285F4",
-    logo: "G",
-    link: "https://share.google/Qg36252eHBRWcUEbL",
-  },
-  {
-    platform: "Trustpilot",
-    rating: "4.8 / 5 Excellent",
-    count: "58 reviews",
-    excerpts: [
-      "Booking was simple and the contractor arrived on time. Excellent service.",
-      "Got three quotes quickly and hired a great electrician. Very happy.",
-      "Professional platform — easy to use and contractors are well-vetted.",
-    ],
-    badgeColor: "#00B67A",
-    logo: "T",
-    link: "#",
-  },
-  {
-    platform: "Facebook",
-    rating: "100% Recommended",
-    count: "13 recommendations",
-    excerpts: [
-      "Used Handyman Direct for a full bathroom renovation. Absolutely brilliant.",
-      "The team was responsive and the contractor they connected me with was top-notch.",
-      "Would recommend to anyone looking for reliable tradesmen in South Africa.",
-    ],
-    badgeColor: "#1877F2",
-    logo: "f",
-    link: "#",
-  },
-];
+import { reviewPlatforms as slides } from "@/config/siteConfig";
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
