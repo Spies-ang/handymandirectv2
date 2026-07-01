@@ -16,7 +16,7 @@ const Footer = () => (
 
         <div>
           <h4 className="font-display font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Trades</h4>
-          <ul className="space-y-2 text-sm opacity-70 grid grid-cols-2 gap-x-4">
+          <ul className="text-sm opacity-70 grid grid-cols-2 gap-x-4 gap-y-2">
             {trades.map((t) => (
               <li key={t.slug}>
                 <Link to={`/trade/${t.slug}`} className="hover:opacity-100 transition-opacity">
