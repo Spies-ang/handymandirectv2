@@ -36,12 +36,12 @@ const TestimonialsSection = () => {
           <p className="text-muted-foreground text-lg">Verified reviews across multiple platforms</p>
         </div>
 
-        <div className="relative max-w-2xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-8 md:px-12">
           {/* Slider track */}
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl w-full">
             <div
+              className="flex w-full"
               style={{
-                display: "flex",
                 transform: `translateX(-${current * 100}%)`,
                 transition: "transform 0.4s ease",
               }}
@@ -51,8 +51,8 @@ const TestimonialsSection = () => {
               {slides.map((s, i) => (
                 <div
                   key={i}
-                  style={{ minWidth: "100%", flexShrink: 0 }}
-                  className="bg-card border rounded-2xl p-8"
+                  style={{ flex: "0 0 100%" }}
+                  className="w-full min-w-0 bg-card border rounded-2xl p-6 md:p-8 break-words"
                 >
                   {/* Platform header */}
                   <div className="flex items-center gap-3 mb-5">
