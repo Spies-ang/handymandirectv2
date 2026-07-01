@@ -104,7 +104,7 @@ const TestimonialsSection = () => {
           {/* Prev / Next buttons */}
           <button
             onClick={() => goTo(current - 1)}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+            className="absolute -left-2 md:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background border shadow-sm flex items-center justify-center hover:bg-muted transition-colors z-10"
             aria-label="Previous"
           >
             <ChevronLeft className="w-5 h-5" />
