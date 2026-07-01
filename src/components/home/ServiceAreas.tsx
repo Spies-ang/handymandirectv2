@@ -28,7 +28,7 @@ const provinces = [
     province: "Western Cape",
     areas: [
       {
-        city: "Cape Town / Stellenbosch",
+        city: "Cape Town",
         slug: "cape-town",
         suburbs: ["Stellenbosch", "Somerset West", "Paarl", "Franschhoek", "Durbanville", "Bellville", "Brackenfell", "Kuils River"],
       },
