@@ -32,7 +32,7 @@ const Footer = () => (
           <ul className="space-y-2 text-sm opacity-70">
             <li><Link to="/area/pretoria" className="hover:opacity-100 transition-opacity">Pretoria</Link></li>
             <li><Link to="/area/durban" className="hover:opacity-100 transition-opacity">Durban</Link></li>
-            <li><Link to="/area/cape-town" className="hover:opacity-100 transition-opacity">Cape Town / Stellenbosch</Link></li>
+            <li><Link to="/area/cape-town" className="hover:opacity-100 transition-opacity">Cape Town</Link></li>
           </ul>
         </div>
 
