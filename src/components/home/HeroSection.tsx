@@ -9,7 +9,7 @@ const ROTATING_WORDS = ["Tradesmen", "Contractors", "Handymen"];
 const LOCATIONS = [
   { label: "All Areas", suffix: "Near You" },
   { label: "Pretoria", suffix: "in Pretoria" },
-  { label: "Cape Town / Stellenbosch", suffix: "in Cape Town" },
+  { label: "Cape Town", suffix: "in Cape Town" },
   { label: "Durban", suffix: "in Durban" },
 ];
 
