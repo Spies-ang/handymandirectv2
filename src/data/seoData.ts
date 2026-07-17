@@ -250,6 +250,7 @@ export const trades: TradeData[] = [
 export interface CityData {
   name: string;
   slug: string;
+  province: string;
   description: string;
   suburbs: string[];
 }
@@ -258,19 +259,29 @@ export const cities: CityData[] = [
   {
     name: "Pretoria",
     slug: "pretoria",
+    province: "Gauteng",
     description: "Find trusted tradesmen in Pretoria and surrounding suburbs. From Hatfield to Waterkloof, Handyman Direct has verified contractors ready to help.",
     suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana", "Faerie Glen", "Lynnwood", "Moot", "Sunnyside"],
   },
   {
+    name: "Johannesburg",
+    slug: "johannesburg",
+    province: "Gauteng",
+    description: "Find trusted tradesmen in Johannesburg and surrounding suburbs. From Sandton to Soweto, Handyman Direct connects you with verified contractors across the City of Johannesburg.",
+    suburbs: ["Sandton", "Randburg", "Roodepoort", "Midrand", "Fourways", "Rosebank", "Bryanston", "Northcliff", "Soweto", "Johannesburg CBD"],
+  },
+  {
     name: "Durban",
     slug: "durban",
+    province: "KwaZulu-Natal",
     description: "Find trusted tradesmen in Durban and surrounding suburbs. Handyman Direct connects you with verified contractors for any home improvement or repair project.",
     suburbs: ["Umhlanga", "Durban North", "Durban South", "Pinetown", "Hillcrest", "Ballito", "Kloof", "Westville", "Amanzimtoti", "Berea", "Morningside", "La Lucia", "Musgrave", "Glenwood"],
   },
   {
-    name: "Cape Town / Stellenbosch",
+    name: "Cape Town",
     slug: "cape-town",
-    description: "Find trusted tradesmen in Cape Town, Stellenbosch and the Winelands area. Get quotes from verified contractors for any project.",
+    province: "Western Cape",
+    description: "Find trusted tradesmen in Cape Town and the surrounding Winelands. Get quotes from verified contractors for any project.",
     suburbs: ["Stellenbosch", "Somerset West", "Paarl", "Franschhoek", "Durbanville", "Bellville", "Brackenfell", "Kuils River", "Strand", "Gordon's Bay", "Helderberg", "Kraaifontein"],
   },
 ];
