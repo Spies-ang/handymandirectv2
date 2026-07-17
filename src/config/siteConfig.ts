@@ -1,8 +1,21 @@
 // Central site configuration for content-driven sections.
 
+export interface CompanyStat {
+  value: string;
+  label: string;
+}
+
+// Live figures from handymandirect.co.za — update here to change everywhere.
+export const companyStats: CompanyStat[] = [
+  { value: "283", label: "Quality Contractors" },
+  { value: "2744", label: "Projects Completed" },
+  { value: "4.8★", label: "Average Rating" },
+  { value: "1717", label: "Reviews · 96% Rated & Trusted" },
+];
+
 export interface ReviewPlatform {
   platform: string;
-  rating: string;
+  rating: string; // empty string when no verified numeric rating
   count: string;
   excerpts: string[];
   badgeColor: string;
@@ -20,7 +33,7 @@ const sharedExcerpts = [
 export const reviewPlatforms: ReviewPlatform[] = [
   {
     platform: "HandymanDirect",
-    rating: "5.0 / 5",
+    rating: "",
     count: "Verified customer reviews",
     excerpts: sharedExcerpts,
     badgeColor: "hsl(145 63% 42%)",
@@ -29,7 +42,7 @@ export const reviewPlatforms: ReviewPlatform[] = [
   },
   {
     platform: "Hello Peter",
-    rating: "5.0 / 5",
+    rating: "",
     count: "Verified customer reviews",
     excerpts: sharedExcerpts,
     badgeColor: "#EE1B24",
@@ -38,7 +51,7 @@ export const reviewPlatforms: ReviewPlatform[] = [
   },
   {
     platform: "Google",
-    rating: "5.0 / 5",
+    rating: "",
     count: "Verified customer reviews",
     excerpts: sharedExcerpts,
     badgeColor: "#4285F4",
@@ -47,8 +60,8 @@ export const reviewPlatforms: ReviewPlatform[] = [
   },
   {
     platform: "Trustpilot",
-    rating: "5.0 / 5",
-    count: "58 reviews",
+    rating: "4.8 / 5",
+    count: "57 reviews",
     excerpts: sharedExcerpts,
     badgeColor: "#00B67A",
     logo: "T",
@@ -56,7 +69,7 @@ export const reviewPlatforms: ReviewPlatform[] = [
   },
   {
     platform: "Facebook",
-    rating: "5.0 / 5",
+    rating: "",
     count: "Verified customer reviews",
     excerpts: sharedExcerpts,
     badgeColor: "#1877F2",
