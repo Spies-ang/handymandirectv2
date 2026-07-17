@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { reviewPlatforms as slides } from "@/config/siteConfig";
+import { reviewPlatforms as slides, companyStats } from "@/config/siteConfig";
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
