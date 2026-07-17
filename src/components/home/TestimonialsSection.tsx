@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { reviewPlatforms as slides } from "@/config/siteConfig";
+import { reviewPlatforms as slides, companyStats } from "@/config/siteConfig";
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
@@ -36,6 +36,16 @@ const TestimonialsSection = () => {
           <p className="text-muted-foreground text-lg">Verified reviews across multiple platforms</p>
         </div>
 
+        {/* HandymanDirect live stats */}
+        <div className="max-w-4xl mx-auto mb-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {companyStats.map((stat) => (
+            <div key={stat.label} className="bg-card border rounded-xl p-4 text-center">
+              <div className="font-display text-2xl md:text-3xl font-extrabold text-primary">{stat.value}</div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
         <div className="relative max-w-4xl mx-auto px-8 md:px-12">
           {/* Slider track */}
           <div className="overflow-hidden rounded-2xl w-full">
@@ -65,8 +75,12 @@ const TestimonialsSection = () => {
                     <div>
                       <p className="font-display font-bold text-foreground">{s.platform}</p>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="font-semibold" style={{ color: s.badgeColor }}>{s.rating}</span>
-                        <span>·</span>
+                        {s.rating && (
+                          <>
+                            <span className="font-semibold" style={{ color: s.badgeColor }}>{s.rating}</span>
+                            <span>·</span>
+                          </>
+                        )}
                         <span>{s.count}</span>
                       </div>
                     </div>

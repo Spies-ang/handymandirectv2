@@ -31,6 +31,7 @@ const Footer = () => (
           <h4 className="font-display font-bold mb-3 text-sm uppercase tracking-wide opacity-80">Areas</h4>
           <ul className="space-y-2 text-sm opacity-70">
             <li><Link to="/area/pretoria" className="hover:opacity-100 transition-opacity">Pretoria</Link></li>
+            <li><Link to="/area/johannesburg" className="hover:opacity-100 transition-opacity">Johannesburg</Link></li>
             <li><Link to="/area/durban" className="hover:opacity-100 transition-opacity">Durban</Link></li>
             <li><Link to="/area/cape-town" className="hover:opacity-100 transition-opacity">Cape Town</Link></li>
           </ul>

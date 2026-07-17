@@ -9,8 +9,9 @@ const ROTATING_WORDS = ["Tradesmen", "Contractors", "Handymen"];
 const LOCATIONS = [
   { label: "All Areas", suffix: "Near You" },
   { label: "Pretoria", suffix: "in Pretoria" },
-  { label: "Cape Town", suffix: "in Cape Town" },
+  { label: "Johannesburg", suffix: "in Johannesburg" },
   { label: "Durban", suffix: "in Durban" },
+  { label: "Cape Town", suffix: "in Cape Town" },
 ];
 
 const HeroSection = () => {
@@ -52,7 +53,7 @@ const HeroSection = () => {
                 <Star key={i} className="w-4 h-4 fill-star text-star" />
               ))}
             </div>
-            <span className="text-sm font-medium text-foreground">4.9★ from 200+ Google Reviews</span>
+            <span className="text-sm font-medium text-foreground">Verified customer reviews</span>
           </div>
 
           <h1 className="font-display text-4xl md:text-6xl font-extrabold text-foreground leading-tight mb-4">
