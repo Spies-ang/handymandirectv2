@@ -53,7 +53,7 @@ const HeroSection = () => {
                 <Star key={i} className="w-4 h-4 fill-star text-star" />
               ))}
             </div>
-            <span className="text-sm font-medium text-foreground">Verified customer reviews</span>
+            <span className="text-sm font-medium text-foreground">4.9★ from 210 Google Reviews</span>
           </div>
 
           <h1 className="font-display text-4xl md:text-6xl font-extrabold text-foreground leading-tight mb-4">

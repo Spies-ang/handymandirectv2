@@ -51,8 +51,8 @@ export const reviewPlatforms: ReviewPlatform[] = [
   },
   {
     platform: "Google",
-    rating: "",
-    count: "Verified customer reviews",
+    rating: "4.9 / 5",
+    count: "210 reviews",
     excerpts: sharedExcerpts,
     badgeColor: "#4285F4",
     logo: "G",
