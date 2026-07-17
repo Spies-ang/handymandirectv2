@@ -84,9 +84,6 @@ const TestimonialsSection = () => {
                         <span>{s.count}</span>
                       </div>
                     </div>
-                        <span>{s.count}</span>
-                      </div>
-                    </div>
                     <div className="ml-auto flex gap-0.5">
                       {[...Array(5)].map((_, j) => (
                         <Star key={j} className="w-4 h-4 fill-star text-star" />
