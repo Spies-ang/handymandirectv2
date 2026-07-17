@@ -75,8 +75,15 @@ const TestimonialsSection = () => {
                     <div>
                       <p className="font-display font-bold text-foreground">{s.platform}</p>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="font-semibold" style={{ color: s.badgeColor }}>{s.rating}</span>
-                        <span>·</span>
+                        {s.rating && (
+                          <>
+                            <span className="font-semibold" style={{ color: s.badgeColor }}>{s.rating}</span>
+                            <span>·</span>
+                          </>
+                        )}
+                        <span>{s.count}</span>
+                      </div>
+                    </div>
                         <span>{s.count}</span>
                       </div>
                     </div>
