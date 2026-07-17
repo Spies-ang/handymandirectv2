@@ -34,7 +34,7 @@ const AreaPage = () => {
           <div className="container max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 bg-background rounded-full px-4 py-1.5 mb-4 shadow-sm border">
               <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">{city.name}, Gauteng</span>
+              <span className="text-sm font-medium">{city.name}, {city.province}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-extrabold text-foreground leading-tight mb-4">
               Handyman & Contractors in{" "}
