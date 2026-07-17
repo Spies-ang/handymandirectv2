@@ -138,7 +138,7 @@ const FAQPage = () => {
                       {group.trade}
                     </h3>
                     <Link
-                      to={`/trades/${group.slug}`}
+                      to={`/trade/${group.slug}`}
                       className="text-sm text-primary hover:underline"
                     >
                       View {group.trade} page →
