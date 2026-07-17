@@ -41,6 +41,12 @@ import AdminReviews from "./pages/admin/AdminReviews";
 
 const queryClient = new QueryClient();
 
+// Redirect legacy plural /trades/:slug paths to the canonical /trade/:slug route.
+const TradesRedirect = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/trade/${slug}`} replace />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -55,6 +61,8 @@ const App = () => (
             <Route path="/contractors" element={<ContractorsPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/trade/:slug" element={<TradePage />} />
+            <Route path="/trades/:slug" element={<TradesRedirect />} />
+            <Route path="/trades" element={<Navigate to="/" replace />} />
             <Route path="/area/:citySlug" element={<AreaPage />} />
             <Route path="/area/:citySlug/:tradeSlug" element={<TradeCityPage />} />
             <Route path="/login" element={<LoginPage />} />
