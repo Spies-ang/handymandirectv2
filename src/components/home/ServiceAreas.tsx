@@ -1,41 +1,14 @@
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { cities } from "@/data/seoData";
 
-const provinces = [
-  {
-    province: "Gauteng",
-    areas: [
-      {
-        city: "Pretoria",
-        slug: "pretoria",
-        suburbs: ["Hatfield", "Brooklyn", "Menlyn", "Waterkloof", "Arcadia", "Silverton", "Garsfontein", "Montana"],
-      },
-      // PLACEHOLDER: add more Gauteng cities/areas here once Vincent provides the full list
-    ],
-  },
-  {
-    province: "KwaZulu-Natal",
-    areas: [
-      {
-        city: "Durban",
-        slug: "durban",
-        suburbs: ["Umhlanga", "Durban North", "Durban South", "Pinetown", "Hillcrest", "Ballito", "Kloof", "Westville"],
-      },
-      // PLACEHOLDER: add more KwaZulu-Natal cities/areas here once Vincent provides the full list
-    ],
-  },
-  {
-    province: "Western Cape",
-    areas: [
-      {
-        city: "Cape Town",
-        slug: "cape-town",
-        suburbs: ["Stellenbosch", "Somerset West", "Paarl", "Franschhoek", "Durbanville", "Bellville", "Brackenfell", "Kuils River"],
-      },
-      // PLACEHOLDER: add more Western Cape cities/areas here once Vincent provides the full list
-    ],
-  },
-];
+// Group cities by province, preserving the order defined in seoData.
+const provinces = cities.reduce<{ province: string; areas: typeof cities }[]>((acc, city) => {
+  const existing = acc.find((p) => p.province === city.province);
+  if (existing) existing.areas.push(city);
+  else acc.push({ province: city.province, areas: [city] });
+  return acc;
+}, []);
 
 const ServiceAreas = () => (
   <section className="container py-16">
@@ -60,7 +33,7 @@ const ServiceAreas = () => (
                     to={`/area/${area.slug}`}
                     className="font-display font-bold text-xl text-foreground hover:text-primary transition-colors"
                   >
-                    {area.city}
+                    {area.city ?? area.name}
                   </Link>
                 </div>
                 <div className="flex flex-wrap gap-2">
