@@ -33,7 +33,7 @@ const ServiceAreas = () => (
                     to={`/area/${area.slug}`}
                     className="font-display font-bold text-xl text-foreground hover:text-primary transition-colors"
                   >
-                    {area.city ?? area.name}
+                    {area.name}
                   </Link>
                 </div>
                 <div className="flex flex-wrap gap-2">
