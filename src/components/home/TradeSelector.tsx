@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Wrench, Zap, Paintbrush, Droplets, Hammer, HardHat, Layers, Home, LayoutGrid, CircleDot, Flame } from "lucide-react";
+import { Wrench, Zap, Paintbrush, Droplets, Hammer, HardHat, Layers, Home, LayoutGrid, CircleDot, Flame, Bath, Utensils, DoorOpen, ClipboardList, Building2, Briefcase } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -21,6 +21,12 @@ const trades = [
   { name: "Roofer", slug: "roofer", icon: CircleDot },
   { name: "Tiler", slug: "tiler", icon: LayoutGrid },
   { name: "Welder", slug: "welder", icon: Flame },
+  { name: "Bathroom", slug: "bathroom", icon: Bath },
+  { name: "Kitchen", slug: "kitchen", icon: Utensils },
+  { name: "Door", slug: "door", icon: DoorOpen },
+  { name: "Home Repairs", slug: "home-repairs", icon: ClipboardList },
+  { name: "Property Maintenance", slug: "property-maintenance", icon: Building2 },
+  { name: "Contractor", slug: "contractor", icon: Briefcase },
 ];
 
 const TradeSelector = () => {

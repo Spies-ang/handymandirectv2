@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Wrench, Zap, Paintbrush, Droplets, Hammer, HardHat, Layers, Home, LayoutGrid, CircleDot, Flame, Scissors } from "lucide-react";
+import { Wrench, Zap, Paintbrush, Droplets, Hammer, HardHat, Layers, Home, LayoutGrid, CircleDot, Flame, Scissors, Bath, Utensils, DoorOpen, ClipboardList, Building2, Briefcase } from "lucide-react";
 
 const trades = [
   { name: "Builder",     slug: "builder",     icon: HardHat,    desc: "New builds, extensions, and structural work" },
@@ -13,7 +13,13 @@ const trades = [
   { name: "Renovator",   slug: "renovator",   icon: Home,       desc: "Kitchen and bathroom remodels" },
   { name: "Roofer",      slug: "roofer",      icon: CircleDot,  desc: "Leak repairs, IBR, and waterproofing" },
   { name: "Tiler",       slug: "tiler",       icon: Scissors,   desc: "Bathrooms, kitchens, and outdoor tiling" },
-  { name: "Welder",      slug: "welder",      icon: Flame,      desc: "Security gates, burglar bars, and steel work" },
+  { name: "Welder",             slug: "welder",             icon: Flame,      desc: "Security gates, burglar bars, and steel work" },
+  { name: "Bathroom",             slug: "bathroom",             icon: Bath,          desc: "Renovations, refits, and waterproofing" },
+  { name: "Kitchen",              slug: "kitchen",              icon: Utensils,      desc: "Cupboards, countertops, and remodels" },
+  { name: "Door",                 slug: "door",                 icon: DoorOpen,      desc: "Hanging, repairs, and security doors" },
+  { name: "Home Repairs",         slug: "home-repairs",         icon: ClipboardList, desc: "Odd jobs and general home fixes" },
+  { name: "Property Maintenance", slug: "property-maintenance", icon: Building2,     desc: "Upkeep for homes, rentals, and complexes" },
+  { name: "Contractor",           slug: "contractor",           icon: Briefcase,     desc: "Project management across all trades" },
 ];
 
 const BrowseTrades = () => (
