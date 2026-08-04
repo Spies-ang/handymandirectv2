@@ -36,8 +36,14 @@ const TradePage = () => {
       <main className="flex-1">
 
         {/* Hero — trust badge, h1, heroDescription only */}
-        <section className="bg-secondary/50 py-16">
-          <div className="container max-w-3xl text-center">
+        <section
+          className="relative bg-secondary/50 py-16 bg-cover bg-center"
+          style={trade.image ? { backgroundImage: `url(${trade.image})` } : undefined}
+        >
+          {trade.image && (
+            <div className="absolute inset-0 bg-background/85 backdrop-blur-[1px]" aria-hidden="true" />
+          )}
+          <div className="relative container max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 bg-background rounded-full px-4 py-1.5 mb-4 shadow-sm border">
               <Star className="w-4 h-4 fill-star text-star" />
               <span className="text-sm font-medium">4.9★ rated · Verified {trade.name}s</span>

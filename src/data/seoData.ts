@@ -12,7 +12,7 @@ export interface TradeData {
   image?: string;
 }
 
-// TODO: Add Unsplash photo URLs to each trade. Format: https://images.unsplash.com/photo-{id}?w=1600&q=80&auto=format&fit=crop. Right-click photo on unsplash.com -> Copy image address.
+
 export const trades: TradeData[] = [
   {
     name: "Builder",
@@ -32,7 +32,7 @@ export const trades: TradeData[] = [
       { q: "What insurance should my builder have?", a: "Your builder should carry public liability insurance at minimum. For larger projects, confirm they have contractors' all-risk insurance covering materials and third-party damage." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Carpenter",
@@ -51,7 +51,7 @@ export const trades: TradeData[] = [
       { q: "Do carpenters supply melamine board for built-ins?", a: "Most carpenters can source melamine board at trade prices. Standard colours are stock items; custom colours or finishes may need to be ordered and can extend lead times." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1561297331-a9c00b9c2c44?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Electrician",
@@ -71,7 +71,7 @@ export const trades: TradeData[] = [
       { q: "Do I need a CoC for small electrical jobs?", a: "Technically yes — any new electrical work requires a CoC. In practice, minor repairs like replacing a light switch may not always require one, but a full rewire or DB upgrade always does." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Handyman",
@@ -90,7 +90,7 @@ export const trades: TradeData[] = [
       { q: "Do handymen carry their own tools?", a: "Yes, our handymen arrive fully equipped with standard hand and power tools. For unusual or specialised equipment, mention it in your job description so they can prepare." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "maintenance", "assessment", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Painter",
@@ -109,7 +109,7 @@ export const trades: TradeData[] = [
       { q: "How often should I repaint the exterior of my house?", a: "In most South African climates, exterior paint lasts 5–8 years. Coastal properties may need repainting every 3–5 years due to salt and humidity." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1652829069834-2c05031199c5?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Paver",
@@ -128,7 +128,7 @@ export const trades: TradeData[] = [
       { q: "How do I maintain paving after installation?", a: "Re-sand joints every 2–3 years, apply a paving sealant to resist staining, and remove moss and weeds promptly. Avoid using high-pressure water directly on joints." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1725586660046-0c2bea151543?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Plasterer",
@@ -147,7 +147,7 @@ export const trades: TradeData[] = [
       { q: "What causes plaster to crack?", a: "Common causes include insufficient curing time, movement in the building structure, poor mix ratios, or plastering over a dusty or painted surface without proper prep." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1761986757577-140af8859587?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Plumber",
@@ -167,7 +167,7 @@ export const trades: TradeData[] = [
       { q: "Do I need a PIRB-registered plumber?", a: "For new installations and compliance certificates, yes. All plumbers on our platform are registered and qualified." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1749532125405-70950966b0e5?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Renovator",
@@ -186,7 +186,7 @@ export const trades: TradeData[] = [
       { q: "How do I avoid renovation budget overruns?", a: "Get itemised quotes, agree on a fixed scope before work starts, and include a 15–20% contingency. Any changes to scope should be agreed in writing before proceeding." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Roofer",
@@ -205,7 +205,7 @@ export const trades: TradeData[] = [
       { q: "Can roof waterproofing be done in winter?", a: "Most waterproofing systems require dry conditions to apply. In winter rainfall areas, timing matters. Your roofer will advise on the best time to proceed." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Tiler",
@@ -224,7 +224,7 @@ export const trades: TradeData[] = [
       { q: "Can large-format tiles be used in small bathrooms?", a: "Yes, and they can actually make a small bathroom feel larger. They require a very flat substrate and an experienced tiler to install without lippage." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Welder",
@@ -243,7 +243,7 @@ export const trades: TradeData[] = [
       { q: "What's the maintenance required for steel gates?", a: "Mild steel gates should be repainted or re-powder-coated every 3–5 years to prevent rust. Aluminium gates require little to no maintenance." },
     ],
     recommendedServices: ["multiple-quotes", "guesstimate", "assessment", "maintenance", "inspection", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1745448797901-2a4c9d9af1c1?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Bathroom",
@@ -262,7 +262,7 @@ export const trades: TradeData[] = [
       { q: "Do you move plumbing points?", a: "Yes, our specialists can relocate basins, toilets and showers, though moving plumbing adds cost and time compared with keeping the existing layout." },
     ],
     recommendedServices: ["multiple-quotes", "assessment", "guesstimate", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Kitchen",
@@ -281,7 +281,7 @@ export const trades: TradeData[] = [
       { q: "What countertop is best?", a: "Engineered stone (quartz) balances durability and price well for South African kitchens. Granite is hard-wearing, and laminate is the budget option. Your specialist can advise on the trade-offs." },
     ],
     recommendedServices: ["multiple-quotes", "assessment", "guesstimate", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1764526624453-db32c24eca55?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Door",
@@ -300,7 +300,7 @@ export const trades: TradeData[] = [
       { q: "Do you replace locks?", a: "Yes, lock and handle replacement is standard door work, including upgrading to higher-security mortice locks." },
     ],
     recommendedServices: ["multiple-quotes", "instant", "assessment", "maintenance", "guesstimate", "inspection"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1607900840367-a83dcd63296d?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Home Repairs",
@@ -319,7 +319,7 @@ export const trades: TradeData[] = [
       { q: "Do handymen supply materials?", a: "Many will, or you can supply your own. Buying your own materials beforehand saves paying for their shopping time. Discuss this upfront." },
     ],
     recommendedServices: ["multiple-quotes", "instant", "maintenance", "assessment", "guesstimate", "inspection"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1676311396794-f14881e9daaa?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Property Maintenance",
@@ -338,7 +338,7 @@ export const trades: TradeData[] = [
       { q: "Can you handle a whole rental portfolio?", a: "Yes, several of our providers manage maintenance across multiple properties. Discuss your portfolio when requesting quotes." },
     ],
     recommendedServices: ["multiple-quotes", "maintenance", "assessment", "inspection", "instant", "guesstimate"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1628133287836-40bd5453bed1?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Contractor",
@@ -357,7 +357,7 @@ export const trades: TradeData[] = [
       { q: "What insurance should a contractor have?", a: "Public liability at minimum, and contractors all-risk insurance for larger projects, covering materials and third-party damage." },
     ],
     recommendedServices: ["multiple-quotes", "assessment", "guesstimate", "inspection", "maintenance", "instant"],
-    image: "",
+    image: "https://images.unsplash.com/photo-1652303518379-c0ef1c9fb2b1?w=1200&q=80&auto=format&fit=crop",
   },
 ];
 
