@@ -281,7 +281,7 @@ export const trades: TradeData[] = [
       { q: "What countertop is best?", a: "Engineered stone (quartz) balances durability and price well for South African kitchens. Granite is hard-wearing, and laminate is the budget option. Your specialist can advise on the trade-offs." },
     ],
     recommendedServices: ["multiple-quotes", "assessment", "guesstimate", "inspection", "maintenance", "instant"],
-   image: "https://images.unsplash.com/photo-1764526624453-db32c24eca55?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1764526624453-db32c24eca55?w=1200&q=80&auto=format&fit=crop",
   },
   {
     name: "Door",
