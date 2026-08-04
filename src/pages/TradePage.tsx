@@ -162,7 +162,7 @@ const TradePage = () => {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground text-center mb-10">
               {trade.name}s Available In
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {cities.map((city) => (
                 <Link
                   key={city.slug}
