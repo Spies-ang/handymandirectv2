@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 import logoImg from "@/assets/logo.png";
 import { trades } from "@/data/seoData";
 
+const pluralTrade = (name: string) => {
+  if (name.endsWith("man")) return name.slice(0, -3) + "men";
+  if (name.endsWith("s") || name.endsWith("Maintenance")) return name;
+  return name + "s";
+};
+
 const Footer = () => (
   <footer className="bg-foreground text-background">
     <div className="container py-12">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src={logoImg} alt="Handyman Direct" className="h-10" />
+            <img src={logoImg} alt="HandymanDirect.co.za" className="h-10" />
           </div>
           <p className="text-sm opacity-70">Connecting South Africans with trusted, verified tradesmen since day one.</p>
           <p className="text-sm opacity-70 mt-2">South Africa</p>
@@ -20,7 +26,7 @@ const Footer = () => (
             {trades.map((t) => (
               <li key={t.slug}>
                 <Link to={`/trade/${t.slug}`} className="hover:opacity-100 transition-opacity">
-                  {t.name}s
+                  {pluralTrade(t.name)}
                 </Link>
               </li>
             ))}
